@@ -96,6 +96,19 @@ Import `react-native-splash-screen` in your JS file.
 
 `import SplashScreen from 'react-native-splash-screen'`    
 
+Add a file called launch_screen.xml in the layout as the splash screen.
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/launch_screen">
+</LinearLayout>
+```
+
+
+
 Then you can use it like this:
 
 ```JavaScript

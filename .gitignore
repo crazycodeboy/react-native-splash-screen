@@ -1,3 +1,4 @@
+build/
 # Logs
 logs
 *.log
@@ -38,3 +39,4 @@ jspm_packages
 
 
 .idea
+android/
