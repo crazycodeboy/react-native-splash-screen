@@ -24,14 +24,13 @@ Run `npm i react-native-splash-screen --save`
 
 **Android:**
 
-1. In your android/settings.gradle file, make the following additions:
-
+1.In your android/settings.gradle file, make the following additions:
 ```
 include ':react-native-splash-screen'   
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 ```
 
-2. In your android/app/build.gradle file, add the `:react-native-splash-screen` project as a compile-time dependency:
+2.In your android/app/build.gradle file, add the `:react-native-splash-screen` project as a compile-time dependency:
 
 ```
 ...
@@ -41,7 +40,7 @@ dependencies {
 }	
 ```
 
-3. Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
+3.Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
 
 ```java
 public class MainApplication extends Application implements ReactApplication {
