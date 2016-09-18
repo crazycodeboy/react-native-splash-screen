@@ -3,6 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <!--设置透明背景-->
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
 </resources>

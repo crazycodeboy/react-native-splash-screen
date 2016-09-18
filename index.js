@@ -1,6 +1,6 @@
 /**
- * LaunchScreen
- * Android启动屏
+ * SplashScreen
+ * 启动屏
  * 出自：http://www.cboy.me
  * GitHub:https://github.com/crazycodeboy
  * Eamil:crazycodeboy@gmail.com

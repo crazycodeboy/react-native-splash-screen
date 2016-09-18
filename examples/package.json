@@ -8,7 +8,6 @@
   "dependencies": {
     "react": "15.3.1",
     "react-native": "0.32.0",
-    "react-native-check-box": "^1.0.0",
-    "react-native-easy-toast": "^1.0.1"
+    "react-native-splash-screen": "^1.0.5"
   }
 }

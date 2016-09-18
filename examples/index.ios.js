@@ -1,10 +1,11 @@
 /**
- * react-native-check-box example
- * https://github.com/crazycodeboy/react-native-check-box
- * Email:crazycodeboy@gmail.com
- * Blog:http://jiapenghui.com
+ * SplashScreen
+ * 启动屏
+ * 出自：http://www.cboy.me
+ * GitHub:https://github.com/crazycodeboy
+ * Eamil:crazycodeboy@gmail.com
  * @flow
- */
+ * */
 
 import {
     AppRegistry,
