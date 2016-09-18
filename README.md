@@ -56,7 +56,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-            new SplashScreenReactPackage()
+            new SplashScreenReactPackage()  //here
             );
         }
     };
@@ -68,8 +68,17 @@ public class MainApplication extends Application implements ReactApplication {
 }
 ```
 
+**iOS:**
+
+1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
+2. Go to `node_modules` ➜ `react-native-launch-image` and add `SplashScreen.xcodeproj`
+3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
+4. Run your project (`Cmd+R`).
+
 
 ### Third step(Plugin Configuration): 
+
+**Android:**
 
 Update the MainActivity.java file to use `react-native-splash-screen` via the following changes:
 
@@ -77,13 +86,37 @@ Update the MainActivity.java file to use `react-native-splash-screen` via the fo
 public class MainActivity extends ReactActivity {
    @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.show(this);
+        SplashScreen.show(this);  // here
         super.onCreate(savedInstanceState);
     }
-    ...
+    // ...other code
 }
 ```
 
+**iOS:**
+
+You should add following code to AppDelegate.m for keeping launch image:
+
+ 
+```obj-c
+
+#import "AppDelegate.h"
+#import "RCTRootView.h"
+#import "SplashScreen.h"  // here
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // ...other code
+    
+    [SplashScreen show];  // here
+    return YES;
+}
+
+@end
+
+```
 
 ## Demo  
 * [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
@@ -96,6 +129,8 @@ Import `react-native-splash-screen` in your JS file.
 
 `import SplashScreen from 'react-native-splash-screen'`    
 
+**Android:**
+
 Add a file called launch_screen.xml in the layout as the splash screen.
 
 ```
@@ -106,7 +141,6 @@ Add a file called launch_screen.xml in the layout as the splash screen.
     android:background="@drawable/launch_screen">
 </LinearLayout>
 ```
-
 
 
 Then you can use it like this:
