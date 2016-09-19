@@ -16,14 +16,15 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity) {
+    public static void show(final Activity activity,boolean fullScreen) {
         if (activity == null) return;
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (!activity.isFinishing()) {
-                    mSplashDialog = new Dialog(activity, R.style.SplashScreen_SplashTheme);
+
+                    mSplashDialog = new Dialog(activity,fullScreen? R.style.SplashScreen_Fullscreen:R.style.SplashScreen_SplashTheme);
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
 
@@ -33,6 +34,12 @@ public class SplashScreen {
                 }
             }
         });
+    }
+    /**
+     * 打开启动屏
+     */
+    public static void show(final Activity activity) {
+        show(activity,false);
     }
 
     /**
