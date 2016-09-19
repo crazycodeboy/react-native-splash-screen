@@ -16,7 +16,7 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity,boolean fullScreen) {
+    public static void show(final Activity activity,final boolean fullScreen) {
         if (activity == null) return;
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
