@@ -1,6 +1,6 @@
 # react-native-splash-screen
 
-![China.png]()[简体中文](/README.zh.md)
+![China.png](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/China.png)**[简体中文](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/README.zh.md)**
 
 A splash screen for react-native, hide when application loaded ,it works on iOS and Android. 
 
@@ -75,7 +75,7 @@ public class MainApplication extends Application implements ReactApplication {
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2. Go to `node_modules` ➜ `react-native-launch-image` and add `SplashScreen.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`).
+
 
 
 ### Third step(Plugin Configuration): 

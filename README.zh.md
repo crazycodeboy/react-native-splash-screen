@@ -1,10 +1,10 @@
 # react-native-splash-screen
 
-[English](README.md)
+**[English](https://github.com/crazycodeboy/react-native-splash-screen)**
 
-React Native启动屏，解决iOS,Android启动白屏问题，支持Android和iOS。
+React Native启动屏，解决iOS，Android启动白屏问题，支持Android和iOS。
 
-## Content
+## 目录
 
 - [安装说明](#安装说明)
 - [演示](#演示)
@@ -27,7 +27,7 @@ React Native启动屏，解决iOS,Android启动白屏问题，支持Android和iO
 终端运行：
 
 
-`react-native link react-native-splash-screen` or `rnpm link react-native-splash-screen`
+`react-native link react-native-splash-screen` 或 `rnpm link react-native-splash-screen`
 
 ####  手动安装
 
@@ -66,7 +66,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-            new SplashScreenReactPackage()  //here
+            new SplashScreenReactPackage()  //添加这一句
             );
         }
     };
@@ -81,7 +81,7 @@ public class MainApplication extends Application implements ReactApplication {
 **iOS:**
 
 1. 在 XCode的项目导航视图中单击 `Libraries` ➜ `Add Files to [your project's name]`
-2. 通过下面路径找到 `SplashScreen.xcodeproj`,`node_modules` ➜ `react-native-launch-image`  ➜ `SplashScreen.xcodeproj`
+2. 将 `SplashScreen.xcodeproj`添加到你的项目中,`node_modules` ➜ `react-native-launch-image`  ➜ `SplashScreen.xcodeproj`
 
 3.  在XCode中打开`Build Phases` ➜ `Link Binary With Libraries`将`libSplashScreen.a` 添加到你的项目中。
 
@@ -128,7 +128,7 @@ public class MainActivity extends ReactActivity {
 
 ```
 
-## Demo  
+## 演示  
 * [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
 
 ![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-Android.gif)
@@ -136,7 +136,7 @@ public class MainActivity extends ReactActivity {
 
 ## 使用说明  
 
-讲 `react-native-splash-screen` 导入你的JS 文件。
+将 `react-native-splash-screen` 导入你的JS 文件。
 
 
 `import SplashScreen from 'react-native-splash-screen'`    
