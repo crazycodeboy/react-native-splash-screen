@@ -1,40 +1,48 @@
 # react-native-splash-screen
 
-![China.png]()[简体中文](/README.zh.md)
+[English](README.md)
 
-A splash screen for react-native, hide when application loaded ,it works on iOS and Android. 
+React Native启动屏，解决iOS,Android启动白屏问题，支持Android和iOS。
 
 ## Content
 
-- [Installation](#installation)
-- [Demo](#demo)
-- [Getting started](#getting-started)
+- [安装说明](#安装说明)
+- [演示](#演示)
+- [使用说明](#使用说明)
 - [API](#api)
-- [Contribution](#contribution)
+- [贡献](#贡献)
 
-## Installation
+## 安装说明
 
-### First step(Download):
-Run `npm i react-native-splash-screen --save`
+### 第一步(下载):
+在项目根目录打开终端运行 `npm i react-native-splash-screen --save`
 
-### Second step(Plugin Installation):
+### 第二步 (安装):
 
-#### Automatic installation
+大家可以通过自动或手动两种方式来安装`react-native-splash-screen`。
+
+
+#### 自动安装
+
+终端运行：
+
 
 `react-native link react-native-splash-screen` or `rnpm link react-native-splash-screen`
 
-#### Manual installation  
+####  手动安装
 
 **Android:**
 
-1.In your android/settings.gradle file, make the following additions:
+1.在你的 android/settings.gradle 文件中添加下列代码:
 ```
 include ':react-native-splash-screen'   
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 ```
 
-2.In your android/app/build.gradle file, add the `:react-native-splash-screen` project as a compile-time dependency:
+2.在你的 android/app/build.gradle 文件中添加 `:react-native-splash-screen`：
 
+代码如下：
+ 
 ```
 ...
 dependencies {
@@ -43,7 +51,7 @@ dependencies {
 }	
 ```
 
-3.Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
+3.更新你的MainApplication.java 文件，如下:   
 
 ```java
 public class MainApplication extends Application implements ReactApplication {
@@ -72,23 +80,23 @@ public class MainApplication extends Application implements ReactApplication {
 
 **iOS:**
 
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-launch-image` and add `SplashScreen.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`).
+1. 在 XCode的项目导航视图中单击 `Libraries` ➜ `Add Files to [your project's name]`
+2. 通过下面路径找到 `SplashScreen.xcodeproj`,`node_modules` ➜ `react-native-launch-image`  ➜ `SplashScreen.xcodeproj`
+
+3.  在XCode中打开`Build Phases` ➜ `Link Binary With Libraries`将`libSplashScreen.a` 添加到你的项目中。
 
 
-### Third step(Plugin Configuration): 
+
+### 第三步(配置): 
 
 **Android:**
 
-Update the MainActivity.java file to use `react-native-splash-screen` via the following changes:
-
+更新你的 MainActivity.java 文件如下：
 ```java
 public class MainActivity extends ReactActivity {
    @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.show(this);  // here
+        SplashScreen.show(this);  // 添加这一句
         super.onCreate(savedInstanceState);
     }
     // ...other code
@@ -97,7 +105,7 @@ public class MainActivity extends ReactActivity {
 
 **iOS:**
 
-You should add following code to AppDelegate.m for keeping launch image:
+更新你的AppDelegate.m 文件如下：
 
  
 ```obj-c
@@ -112,7 +120,7 @@ You should add following code to AppDelegate.m for keeping launch image:
 {
     // ...other code
     
-    [SplashScreen show];  // here
+    [SplashScreen show];  // 添加这一句，这一句一定要在最后
     return YES;
 }
 
@@ -126,15 +134,16 @@ You should add following code to AppDelegate.m for keeping launch image:
 ![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-Android.gif)
 ![react-native-splash-screen-iOS](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-iOS.gif)
 
-## Getting started  
+## 使用说明  
 
-Import `react-native-splash-screen` in your JS file.
+讲 `react-native-splash-screen` 导入你的JS 文件。
+
 
 `import SplashScreen from 'react-native-splash-screen'`    
 
 **Android:**
 
-Add a file called launch_screen.xml in the layout as the splash screen.
+创建一个名为 launch_screen.xml 的布局文件来自定义你的启动屏幕。
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -145,8 +154,11 @@ Add a file called launch_screen.xml in the layout as the splash screen.
 </LinearLayout>
 ```
 
+**iOS**  
 
-Then you can use it like this:
+iOS可以通过LaunchImage或LaunchScreen.xib来自定义你的启动屏幕。
+
+最后，你可以在适当的时候关闭启动屏幕（如：启动初始化完成后）:
 
 ```JavaScript
 import SplashScreen from 'react-native-splash-screen'
@@ -155,7 +167,7 @@ export default class WelcomePage extends Component {
 
     componentDidMount() {
     	 // do anything while splash screen keeps, use await to wait for an async task.
-        SplashScreen.hide();
+        SplashScreen.hide();//关闭启动屏幕
     }
 }
 ```
@@ -163,16 +175,14 @@ export default class WelcomePage extends Component {
 ## API
 
 
-Method            | Type     | Optional | Description
+方法            | 类型     | 可选 | 描述
 ----------------- | -------- | -------- | ----------- 
-show()   | function | false | Open splash screen 
-hide() |  function  | false  |  Close splash screen     
+show()   | function | false | 打开启动屏幕 
+hide() |  function  | false  |  关闭启动屏幕   
 
-## Contribution
+## 贡献
 
-Issues are welcome. Please add a screenshot of bug and code snippet. Quickest way to solve issue is to reproduce it on one of the examples.
-
-Pull requests are welcome. If you want to change API or making something big better to create issue and discuss it first.
+欢迎大家提问题，如果能给问题加上一个截图，则是极好的。另外欢迎`Pull requests`贡献你的代码。
 
 ---
 
