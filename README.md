@@ -1,6 +1,7 @@
 # react-native-splash-screen
 
-![China.png](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/China.png)**[简体中文](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/README.zh.md)**
+![China.png](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/China.png)**[简体中文](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/README.zh.md) | [原理解析](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)**
+
 
 A splash screen for react-native, hide when application loaded ,it works on iOS and Android. 
 
