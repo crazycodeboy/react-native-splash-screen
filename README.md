@@ -3,7 +3,7 @@
 ![China.png](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/China.png)**[简体中文](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/README.zh.md) | [原理解析](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)**
 
 
-A splash screen for react-native, hide when application loaded ,it works on iOS and Android. 
+A splash screen for react-native, hide when application loaded ,it works on iOS and Android.
 
 ## Content
 
@@ -41,7 +41,7 @@ project(':react-native-splash-screen').projectDir = new File(rootProject.project
 dependencies {
     ...
     compile project(':react-native-splash-screen')
-}	
+}
 ```
 
 3.Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
@@ -74,12 +74,12 @@ public class MainApplication extends Application implements ReactApplication {
 **iOS:**
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-launch-image` and add `SplashScreen.xcodeproj`
+2. Go to `node_modules` ➜ `react-native-splash-screen` and add `SplashScreen.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 
 
 
-### Third step(Plugin Configuration): 
+### Third step(Plugin Configuration):
 
 **Android:**
 
@@ -100,7 +100,7 @@ public class MainActivity extends ReactActivity {
 
 You should add following code to AppDelegate.m for keeping launch image:
 
- 
+
 ```obj-c
 
 #import "AppDelegate.h"
@@ -112,7 +112,7 @@ You should add following code to AppDelegate.m for keeping launch image:
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // ...other code
-    
+
     [SplashScreen show];  // here
     return YES;
 }
@@ -145,7 +145,14 @@ Add a file called launch_screen.xml in the layout as the splash screen.
     android:background="@drawable/launch_screen">
 </LinearLayout>
 ```
+**Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
+
+**iOS**   
+
+iOS can be used to customize your startup screen via LaunchImage or LaunchScreen.xib.
+
+**Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
 Then you can use it like this:
 
@@ -165,8 +172,8 @@ export default class WelcomePage extends Component {
 
 
 Method            | Type     | Optional | Description
------------------ | -------- | -------- | ----------- 
-show()   | function | false | Open splash screen 
+----------------- | -------- | -------- | -----------
+show()   | function | false | Open splash screen
 hide() |  function  | false  |  Close splash screen     
 
 ## Contribution

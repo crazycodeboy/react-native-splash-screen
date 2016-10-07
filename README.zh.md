@@ -42,13 +42,13 @@ project(':react-native-splash-screen').projectDir = new File(rootProject.project
 2.在你的 android/app/build.gradle 文件中添加 `:react-native-splash-screen`：
 
 代码如下：
- 
+
 ```
 ...
 dependencies {
     ...
     compile project(':react-native-splash-screen')
-}	
+}
 ```
 
 3.更新你的MainApplication.java 文件，如下:   
@@ -81,13 +81,13 @@ public class MainApplication extends Application implements ReactApplication {
 **iOS:**
 
 1. 在 XCode的项目导航视图中单击 `Libraries` ➜ `Add Files to [your project's name]`
-2. 将 `SplashScreen.xcodeproj`添加到你的项目中,`node_modules` ➜ `react-native-launch-image`  ➜ `SplashScreen.xcodeproj`
+2. 将 `SplashScreen.xcodeproj`添加到你的项目中,`node_modules` ➜ `react-native-splash-screen`  ➜ `SplashScreen.xcodeproj`
 
 3.  在XCode中打开`Build Phases` ➜ `Link Binary With Libraries`将`libSplashScreen.a` 添加到你的项目中。
 
 
 
-### 第三步(配置): 
+### 第三步(配置):
 
 **Android:**
 
@@ -107,7 +107,7 @@ public class MainActivity extends ReactActivity {
 
 更新你的AppDelegate.m 文件如下：
 
- 
+
 ```obj-c
 
 #import "AppDelegate.h"
@@ -119,7 +119,7 @@ public class MainActivity extends ReactActivity {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // ...other code
-    
+
     [SplashScreen show];  // 添加这一句，这一句一定要在最后
     return YES;
 }
@@ -154,9 +154,13 @@ public class MainActivity extends ReactActivity {
 </LinearLayout>
 ```
 
+**更详细的介绍，可以查看 [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
+
 **iOS**  
 
 iOS可以通过LaunchImage或LaunchScreen.xib来自定义你的启动屏幕。
+
+**更详细的介绍，可以查看 [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
 最后，你可以在适当的时候关闭启动屏幕（如：启动初始化完成后）:
 
@@ -176,8 +180,8 @@ export default class WelcomePage extends Component {
 
 
 方法            | 类型     | 可选 | 描述
------------------ | -------- | -------- | ----------- 
-show()   | function | false | 打开启动屏幕 
+----------------- | -------- | -------- | -----------
+show()   | function | false | 打开启动屏幕
 hide() |  function  | false  |  关闭启动屏幕   
 
 ## 贡献
