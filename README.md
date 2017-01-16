@@ -1,6 +1,6 @@
 # react-native-splash-screen
 
-**[![](http://www.devio.org/io/sb/lang/chinese.svg)](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/README.zh.md)  | [原理解析](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)**
+**[ ![语言 中文](https://img.shields.io/badge/语言-中文-feb252.svg)](https://github.com/crazycodeboy/GitHubPopular/blob/master/README.zh.md)  | [原理解析](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)**
 
 
 A splash screen for react-native, hide when application loaded ,it works on iOS and Android.
@@ -8,10 +8,22 @@ A splash screen for react-native, hide when application loaded ,it works on iOS 
 ## Content
 
 - [Installation](#installation)
-- [Demo](#demo)
+- [Examples](#examples)
 - [Getting started](#getting-started)
 - [API](#api)
 - [Contribution](#contribution)
+- [Changes](#changes)
+
+## Changes
+React Native>=4.0 to use [v2.+](https://github.com/crazycodeboy/react-native-splash-screen/releases) ,and React Native<4.0 to use [v1.0.9](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)
+
+## Examples  
+* [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
+
+![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-Android.gif)
+![react-native-splash-screen-iOS](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-iOS.gif)
+
+
 
 ## Installation
 
@@ -76,6 +88,9 @@ public class MainApplication extends Application implements ReactApplication {
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2. Go to `node_modules` ➜ `react-native-splash-screen` and add `SplashScreen.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
+4. To fix `'SplashScreen.h' file not found`, you have to select your project → Build Settings → Search Paths → Header Search Paths to add:
+   
+   `$(SRCROOT)/../node_modules/react-native-splash-screen/ios`
 
 
 
@@ -125,19 +140,13 @@ You should add following code to AppDelegate.m for keeping launch image:
 
 ```
 
-## Demo  
-* [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
-
-![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-Android.gif)
-![react-native-splash-screen-iOS](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-iOS.gif)
-
 ## Getting started  
 
 Import `react-native-splash-screen` in your JS file.
 
 `import SplashScreen from 'react-native-splash-screen'`    
 
-**Android:**
+### Android:
 
 Add a file called launch_screen.xml in the layout as the splash screen.
 
@@ -149,14 +158,32 @@ Add a file called launch_screen.xml in the layout as the splash screen.
     android:background="@drawable/launch_screen">
 </LinearLayout>
 ```
-**Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
+
+**Optional steps：**
+
+You can also via the following steps to set the window transparent.
+
+open `android/app/src/main/res/values/styles.xml`, to add `<item name="android:windowIsTranslucent">true</item>`,like this :
+
+```xml
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--设置透明背景-->
+        + <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>
+```
+
+**Learn more to see [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/Examples)**
 
 
-**iOS**   
+### iOS    
 
 iOS can be used to customize your startup screen via LaunchImage or LaunchScreen.xib.
 
-**Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
+**Learn more to see [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
 Then you can use it like this:
 

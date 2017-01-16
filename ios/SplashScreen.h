@@ -1,12 +1,13 @@
-//
-//  SplashScreen.h
-//  SplashScreen
-//  出自：http://www.cboy.me
-//  GitHub:https://github.com/crazycodeboy
-//  Eamil:crazycodeboy@gmail.com
-
-
-#import "RCTBridgeModule.h"
+/**
+ * SplashScreen
+ * 启动屏
+ * from：http://www.devio.org
+ * Author:CrazyCodeBoy
+ * GitHub:https://github.com/crazycodeboy
+ * Email:crazycodeboy@gmail.com
+ */
+#import <React/RCTBridgeModule.h>
+//#import "RCTBridgeModule.h"
 
 @interface SplashScreen : NSObject<RCTBridgeModule>
 + (void)show;

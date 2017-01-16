@@ -1,11 +1,12 @@
 /**
  * SplashScreen
  * 启动屏
- * 出自：http://www.cboy.me
+ * from：http://www.devio.org
+ * Author:CrazyCodeBoy
  * GitHub:https://github.com/crazycodeboy
- * Eamil:crazycodeboy@gmail.com
+ * Email:crazycodeboy@gmail.com
  * @flow
- * */
+ */
 'use strict';
 
 
@@ -31,7 +32,7 @@ export default class example extends Component {
             <TouchableOpacity
                 style={styles.container}
                 onPress={(e)=> {
-                    Linking.openURL('http://www.cboy.me');
+                    Linking.openURL('http://www.devio.org/');
                 }}
             >
                 <View >
@@ -39,13 +40,13 @@ export default class example extends Component {
                         SplashScreen 启动屏
                     </Text>
                     <Text style={styles.item}>
-                        @：http://www.cboy.me
+                        @：http://www.devio.org/
                     </Text>
                     <Text style={styles.item}>
                         GitHub:https://github.com/crazycodeboy
                     </Text>
                     <Text style={styles.item}>
-                        Eamil:crazycodeboy@gmail.com
+                        Email:crazycodeboy@gmail.com
                     </Text>
                 </View>
             </TouchableOpacity>

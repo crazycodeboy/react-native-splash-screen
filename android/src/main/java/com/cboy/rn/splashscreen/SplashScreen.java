@@ -5,9 +5,11 @@ import android.app.Dialog;
 import java.lang.ref.WeakReference;
 /**
  * SplashScreen
- * 出自：http://www.cboy.me
+ * 启动屏
+ * from：http://www.devio.org
+ * Author:CrazyCodeBoy
  * GitHub:https://github.com/crazycodeboy
- * Eamil:crazycodeboy@gmail.com
+ * Email:crazycodeboy@gmail.com
  */
 public class SplashScreen {
     private static Dialog mSplashDialog;

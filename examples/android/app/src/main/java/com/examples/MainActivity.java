@@ -4,7 +4,14 @@ import android.os.Bundle;
 
 import com.cboy.rn.splashscreen.SplashScreen;
 import com.facebook.react.ReactActivity;
-
+/**
+ * SplashScreen
+ * 启动屏
+ * from：http://www.devio.org
+ * Author:CrazyCodeBoy
+ * GitHub:https://github.com/crazycodeboy
+ * Email:crazycodeboy@gmail.com
+ */
 public class MainActivity extends ReactActivity {
 
     /**
@@ -22,4 +29,3 @@ public class MainActivity extends ReactActivity {
         super.onCreate(savedInstanceState);
     }
 }
-

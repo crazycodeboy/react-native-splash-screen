@@ -3,11 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
   "dependencies": {
-    "react": "15.3.1",
-    "react-native": "0.32.0",
-    "react-native-splash-screen": "^1.0.5"
+    "react": "15.4.2",
+    "react-native": "0.40.0",
+    "react-native-splash-screen": "^1.0.9"
+  },
+  "devDependencies": {
+    "babel-jest": "18.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "18.1.0",
+    "react-test-renderer": "15.4.2"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

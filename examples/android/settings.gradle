@@ -1,5 +1,5 @@
 rootProject.name = 'examples'
-
-include ':app'
 include ':react-native-splash-screen'
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../../android')
+
+include ':app'

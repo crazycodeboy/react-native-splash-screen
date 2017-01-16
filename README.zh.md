@@ -1,6 +1,6 @@
 # react-native-splash-screen
 
-**[![](http://www.devio.org/io/sb/lang/english.svg)](https://github.com/crazycodeboy/react-native-splash-screen)   | [原理解析](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)**
+**[ ![language English](https://img.shields.io/badge/language-English-feb252.svg)](https://github.com/crazycodeboy/GitHubPopular/)   | [原理解析](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)**
 
 
 React Native启动屏，解决iOS，Android启动白屏问题，支持Android和iOS。
@@ -12,6 +12,19 @@ React Native启动屏，解决iOS，Android启动白屏问题，支持Android和
 - [使用说明](#使用说明)
 - [API](#api)
 - [贡献](#贡献)
+- [改变](#改变)
+
+## 演示  
+* [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
+
+![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-Android.gif)
+![react-native-splash-screen-iOS](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-iOS.gif)
+
+
+## 改变
+
+如果你项目的React Native>=4.0请使用[v2.+](https://github.com/crazycodeboy/react-native-splash-screen/releases),
+如果<4.0请使用[v1.0.9](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)。
 
 ## 安装说明
 
@@ -85,7 +98,12 @@ public class MainApplication extends Application implements ReactApplication {
 2. 将 `SplashScreen.xcodeproj`添加到你的项目中,`node_modules` ➜ `react-native-splash-screen`  ➜ `SplashScreen.xcodeproj`
 
 3.  在XCode中打开`Build Phases` ➜ `Link Binary With Libraries`将`libSplashScreen.a` 添加到你的项目中。
+4.  如果在使用过过程中出现 `'SplashScreen.h' file not found`问题,你可以下面的代码添加到Header Search Paths中,步骤如下:
 
+ 
+选择你的项目,TARGET  → Build Settings → Search Paths → Header Search Paths 添加:
+      
+      `$(SRCROOT)/../node_modules/react-native-splash-screen/ios`
 
 
 ### 第三步(配置):
@@ -129,11 +147,6 @@ public class MainActivity extends ReactActivity {
 
 ```
 
-## 演示  
-* [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
-
-![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-Android.gif)
-![react-native-splash-screen-iOS](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-iOS.gif)
 
 ## 使用说明  
 
@@ -154,6 +167,24 @@ public class MainActivity extends ReactActivity {
     android:background="@drawable/launch_screen">
 </LinearLayout>
 ```
+
+**另外:**
+
+你也可以启用app主题透明选项来解决在APP启动时因主题原因导致的短暂白屏的问题,具体步骤如下:
+
+打开 `android/app/src/main/res/values/styles.xml`文件,添加 `<item name="android:windowIsTranslucent">true</item>`,如下 :
+
+```xml
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--设置透明背景-->
+        + <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>
+```
+
 
 **更详细的介绍，可以查看 [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 

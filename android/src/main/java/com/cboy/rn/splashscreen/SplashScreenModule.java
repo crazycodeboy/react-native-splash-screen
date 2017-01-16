@@ -5,10 +5,12 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
 /**
- * SplashScreenModule
- * 出自：http://www.cboy.me
+ * SplashScreen
+ * 启动屏
+ * from：http://www.devio.org
+ * Author:CrazyCodeBoy
  * GitHub:https://github.com/crazycodeboy
- * Eamil:crazycodeboy@gmail.com
+ * Email:crazycodeboy@gmail.com
  */
 public class SplashScreenModule extends ReactContextBaseJavaModule{
     public SplashScreenModule(ReactApplicationContext reactContext) {
