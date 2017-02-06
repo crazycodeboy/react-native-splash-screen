@@ -219,7 +219,7 @@ export default class WelcomePage extends Component {
 
 方法            | 类型     | 可选 | 描述
 ----------------- | -------- | -------- | -----------
-show()   | function | false | 打开启动屏幕
+show()   | function | false | 打开启动屏幕(原生方法)
 hide() |  function  | false  |  关闭启动屏幕   
 
 ## 贡献
