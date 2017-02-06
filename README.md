@@ -209,7 +209,7 @@ export default class WelcomePage extends Component {
 
 Method            | Type     | Optional | Description
 ----------------- | -------- | -------- | -----------
-show()   | function | false | Open splash screen
+show()   | function | false | Open splash screen (Native Method )
 hide() |  function  | false  |  Close splash screen     
 
 ## Contribution
