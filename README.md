@@ -8,7 +8,7 @@
 [![License MIT](http://img.shields.io/badge/license-MIT-orange.svg?style=flat)](https://raw.githubusercontent.com/crazycodeboy/react-native-check-box/master/LICENSE)
 [ ![原理 解析](https://img.shields.io/badge/原理-解析-brightgreen.svg)](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)
 
-A splash screen for react-native, hide when application loaded ,it works on iOS and Android.
+A splash screen API for react-native which can programatically hide and show the splash screen. Works on iOS and Android.
 
 ## Content
 
@@ -20,7 +20,7 @@ A splash screen for react-native, hide when application loaded ,it works on iOS 
 - [Changes](#changes)
 
 ## Changes
-React Native>=4.0 to use [v2.+](https://github.com/crazycodeboy/react-native-splash-screen/releases) ,and React Native<4.0 to use [v1.0.9](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)
+For React Native >= 4.0 use [v2.+](https://github.com/crazycodeboy/react-native-splash-screen/releases), for React Native < 4.0 use [v1.0.9](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)
 
 ## Examples  
 * [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
@@ -45,13 +45,13 @@ Run `npm i react-native-splash-screen --save`
 
 **Android:**
 
-1.In your android/settings.gradle file, make the following additions:
+1. In your android/settings.gradle file, make the following additions:
 ```
 include ':react-native-splash-screen'   
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 ```
 
-2.In your android/app/build.gradle file, add the `:react-native-splash-screen` project as a compile-time dependency:
+2. In your android/app/build.gradle file, add the `:react-native-splash-screen` project as a compile-time dependency:
 
 ```
 ...
@@ -61,7 +61,7 @@ dependencies {
 }
 ```
 
-3.Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
+3. Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
 
 ```java
 import com.cboy.rn.splashscreen.SplashScreenReactPackage;
@@ -104,12 +104,12 @@ public class MainApplication extends Application implements ReactApplication {
 
 **Android:**
 
-Update the MainActivity.java file to use `react-native-splash-screen` via the following changes:
+Update the `MainActivity.java` to use `react-native-splash-screen` via the following changes:
 
 ```java
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
-import com.cboy.rn.splashscreen.SplashScreen;
+import com.cboy.rn.splashscreen.SplashScreen; // here
 
 public class MainActivity extends ReactActivity {
    @Override
@@ -123,7 +123,7 @@ public class MainActivity extends ReactActivity {
 
 **iOS:**
 
-You should add following code to AppDelegate.m for keeping launch image:
+Update `AppDelegate.m` with the following additions:
 
 
 ```obj-c
@@ -154,7 +154,7 @@ Import `react-native-splash-screen` in your JS file.
 
 ### Android:
 
-Add a file called launch_screen.xml in the layout as the splash screen.
+Create a file called `launch_screen.xml` in `app/src/main/res/layout` (create the `layout`-folder if it doesn't exist). The contents of the file should be the following:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -165,11 +165,20 @@ Add a file called launch_screen.xml in the layout as the splash screen.
 </LinearLayout>
 ```
 
+Customize your launch screen by creating a `launch_screen.png`-file and placing it in an appropriate `drawable`-folder. Android automatically scales drawable, so you do not necessarily need to provide images for all phone densities.
+You can create splash screens in the following folders:
+* `drawable-ldpi`
+* `drawable-mdpi`
+* `drawable-hdpi`
+* `drawable-xhdpi`
+* `drawable-xxhdpi`
+* `drawable-xxxhdpi`
+
 **Optional steps：**
 
-You can also via the following steps to set the window transparent.
+If you want the splash screen to be transparent, follow these steps.
 
-open `android/app/src/main/res/values/styles.xml`, to add `<item name="android:windowIsTranslucent">true</item>`,like this :
+Open `android/app/src/main/res/values/styles.xml` and add `<item name="android:windowIsTranslucent">true</item>` to the file. It should look like this:
 
 ```xml
 <resources>
@@ -177,21 +186,23 @@ open `android/app/src/main/res/values/styles.xml`, to add `<item name="android:w
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--设置透明背景-->
-        + <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 </resources>
 ```
 
-**Learn more to see [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/Examples)**
+**To learn more see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
 
 ### iOS    
 
-iOS can be used to customize your startup screen via LaunchImage or LaunchScreen.xib.
+Customize your splash screen via LaunchImage or LaunchScreen.xib,
 
-**Learn more to see [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
+**Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
-Then you can use it like this:
+## Usage
+
+Use like so:
 
 ```JavaScript
 import SplashScreen from 'react-native-splash-screen'
@@ -199,7 +210,8 @@ import SplashScreen from 'react-native-splash-screen'
 export default class WelcomePage extends Component {
 
     componentDidMount() {
-    	 // do anything while splash screen keeps, use await to wait for an async task.
+    	// do stuff while splash screen is shown
+        // After having done stuff (such as async tasks) hide the splash screen
         SplashScreen.hide();
     }
 }
@@ -215,9 +227,9 @@ hide() |  function  | false  |  Close splash screen
 
 ## Contribution
 
-Issues are welcome. Please add a screenshot of bug and code snippet. Quickest way to solve issue is to reproduce it on one of the examples.
+Issues are welcome. Please add a screenshot of you bug and a code snippet. Quickest way to solve issue is to reproduce it in one of the examples.
 
-Pull requests are welcome. If you want to change API or making something big better to create issue and discuss it first.
+Pull requests are welcome. If you want to change the API or do something big it is best to create an issue and discuss it first.
 
 ---
 
