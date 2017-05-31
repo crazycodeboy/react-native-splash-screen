@@ -8,8 +8,10 @@
  */
 
 #import "SplashScreen.h"
+#import <React/RCTBridge.h>
 
 static bool waiting = true;
+static bool addedJsLoadErrorObserver = false;
 
 @implementation SplashScreen
 - (dispatch_queue_t)methodQueue{
@@ -18,16 +20,32 @@ static bool waiting = true;
 RCT_EXPORT_MODULE()
 
 + (void)show {
+    if (!addedJsLoadErrorObserver) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jsLoadError:) name:RCTJavaScriptDidFailToLoadNotification object:nil];
+        addedJsLoadErrorObserver = true;
+    }
+
     while (waiting) {
         NSDate* later = [NSDate dateWithTimeIntervalSinceNow:0.1];
         [[NSRunLoop mainRunLoop] runUntilDate:later];
     }
 }
 
-RCT_EXPORT_METHOD(hide) {
++ (void)hide {
     dispatch_async(dispatch_get_main_queue(),
                    ^{
                        waiting = false;
                    });
 }
+
++ (void) jsLoadError:(NSNotification*)notification
+{
+    // If there was an error loading javascript, hide the splash screen so it can be shown.  Otherwise the splash screen will remain forever, which is a hassle to debug.
+    [SplashScreen hide];
+}
+
+RCT_EXPORT_METHOD(hide) {
+    [SplashScreen hide];
+}
+
 @end

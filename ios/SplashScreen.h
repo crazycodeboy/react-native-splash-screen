@@ -7,8 +7,8 @@
  * Email:crazycodeboy@gmail.com
  */
 #import <React/RCTBridgeModule.h>
-//#import "RCTBridgeModule.h"
 
 @interface SplashScreen : NSObject<RCTBridgeModule>
 + (void)show;
++ (void)hide;
 @end
