@@ -20,7 +20,7 @@ A splash screen API for react-native which can programatically hide and show the
 - [Changes](#changes)
 
 ## Changes
-For React Native >= 4.0 use [v2.+](https://github.com/crazycodeboy/react-native-splash-screen/releases), for React Native < 4.0 use [v1.0.9](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)
+For React Native >= 0.47.0 use [v3.+](https://github.com/crazycodeboy/react-native-splash-screen/releases), for React Native < 0.47.0 use [v2.1.0](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)
 
 ## Examples  
 * [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)

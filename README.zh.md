@@ -29,8 +29,8 @@ React Native启动屏，解决iOS，Android启动白屏问题，支持Android和
 
 ## 改变
 
-如果你项目的React Native>=4.0请使用[v2.+](https://github.com/crazycodeboy/react-native-splash-screen/releases),
-如果<4.0请使用[v1.0.9](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)。
+如果你项目的React Native>=0.47.请使用[v3.+](https://github.com/crazycodeboy/react-native-splash-screen/releases),
+如果<0.47.0请使用[v2.1.0](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)。
 
 ## 安装说明
 
