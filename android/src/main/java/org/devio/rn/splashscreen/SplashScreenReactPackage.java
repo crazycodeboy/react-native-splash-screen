@@ -1,4 +1,4 @@
-package com.cboy.rn.splashscreen;
+package org.devio.rn.splashscreen;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
