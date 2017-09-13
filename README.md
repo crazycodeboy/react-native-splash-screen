@@ -64,7 +64,11 @@ dependencies {
 3. Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
 
 ```java
+// react-native-splash-screen >= 0.3.1
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+// react-native-splash-screen < 0.3.1
 import com.cboy.rn.splashscreen.SplashScreenReactPackage;
+
 public class MainApplication extends Application implements ReactApplication {
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -109,6 +113,9 @@ Update the `MainActivity.java` to use `react-native-splash-screen` via the follo
 ```java
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
+// react-native-splash-screen >= 0.3.1
+import org.devio.rn.splashscreen.SplashScreen; // here
+// react-native-splash-screen < 0.3.1
 import com.cboy.rn.splashscreen.SplashScreen; // here
 
 public class MainActivity extends ReactActivity {
