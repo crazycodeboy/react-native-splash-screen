@@ -46,14 +46,14 @@ Run `npm i react-native-splash-screen --save`
 **Android:**
 
 1. In your android/settings.gradle file, make the following additions:
-```
+```java
 include ':react-native-splash-screen'   
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 ```
 
 2. In your android/app/build.gradle file, add the `:react-native-splash-screen` project as a compile-time dependency:
 
-```
+```java
 ...
 dependencies {
     ...
@@ -163,7 +163,7 @@ Import `react-native-splash-screen` in your JS file.
 
 Create a file called `launch_screen.xml` in `app/src/main/res/layout` (create the `layout`-folder if it doesn't exist). The contents of the file should be the following:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -211,7 +211,7 @@ Customize your splash screen via LaunchImage or LaunchScreen.xib,
 
 Use like so:
 
-```JavaScript
+```javascript
 import SplashScreen from 'react-native-splash-screen'
 
 export default class WelcomePage extends Component {
