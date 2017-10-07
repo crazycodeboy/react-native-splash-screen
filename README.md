@@ -201,6 +201,16 @@ Open `android/app/src/main/res/values/styles.xml` and add `<item name="android:w
 **To learn more see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
 
+If you want to customize the color of the status bar when the splash screen is displayed:
+
+Create `android/app/src/main/res/values/colors.xml` and add 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_dark"><!-- Colour of your status bar here --></color>
+</resources>
+```
+
 ### iOS    
 
 Customize your splash screen via LaunchImage or LaunchScreen.xib,
