@@ -111,7 +111,7 @@ public class MainApplication extends Application implements ReactApplication {
 Update the `MainActivity.java` to use `react-native-splash-screen` via the following changes:
 
 ```java
-import android.os.Bundle;
+import android.os.Bundle; // here
 import com.facebook.react.ReactActivity;
 // react-native-splash-screen >= 0.3.1
 import org.devio.rn.splashscreen.SplashScreen; // here
