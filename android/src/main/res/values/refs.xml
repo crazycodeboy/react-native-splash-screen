@@ -3,7 +3,4 @@
     <item type="layout" name="launch_screen">
         @layout/launch_screen
     </item>
-    <item type="color" name="primary_dark">
-        @color/primary_dark
-    </item>
 </resources>
