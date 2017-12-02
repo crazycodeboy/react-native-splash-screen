@@ -99,7 +99,7 @@ public class MainApplication extends Application implements ReactApplication {
 2. Go to `node_modules` ➜ `react-native-splash-screen` and add `SplashScreen.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. To fix `'SplashScreen.h' file not found`, you have to select your project → Build Settings → Search Paths → Header Search Paths to add:
-   
+
    `$(SRCROOT)/../node_modules/react-native-splash-screen/ios`
 
 
@@ -203,12 +203,27 @@ Open `android/app/src/main/res/values/styles.xml` and add `<item name="android:w
 
 If you want to customize the color of the status bar when the splash screen is displayed:
 
-Create `android/app/src/main/res/values/colors.xml` and add 
+Create `android/app/src/main/res/values/colors.xml` and add
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_dark"><!-- Colour of your status bar here --></color>
+    <color name="status_bar_color"><!-- Colour of your status bar here --></color>
 </resources>
+```
+
+Create a style definition for this in `android/app/src/main/res/values/colors.xml`:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SplashScreenTheme" parent="SplashScreen_SplashTheme">
+        <item name="colorPrimaryDark">@color/status_bar_color</item>
+    </style>
+</resources>
+```
+
+Change your `show` method to include your custom style:
+```java
+SplashScreen.show(this, false, R.style.SplashScreenTheme);
 ```
 
 ### iOS    

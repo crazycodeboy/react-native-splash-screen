@@ -14,13 +14,14 @@ import java.lang.ref.WeakReference;
  * Email:crazycodeboy@gmail.com
  */
 public class SplashScreen {
+    private static int NULL_ID = 0;
     private static Dialog mSplashDialog;
     private static WeakReference<Activity> mActivity;
 
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final boolean fullScreen) {
+    public static void show(final Activity activity, final boolean fullScreen, final int themeResId) {
         if (activity == null) return;
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
@@ -28,7 +29,12 @@ public class SplashScreen {
             public void run() {
                 if (!activity.isFinishing()) {
 
-                    mSplashDialog = new Dialog(activity, fullScreen ? R.style.SplashScreen_Fullscreen : R.style.SplashScreen_SplashTheme);
+                    mSplashDialog = new Dialog(
+                            activity,
+                            themeResId != NULL_ID ? themeResId
+                                    : fullScreen ? R.style.SplashScreen_Fullscreen
+                                    : R.style.SplashScreen_SplashTheme
+                    );
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
 
@@ -38,6 +44,13 @@ public class SplashScreen {
                 }
             }
         });
+    }
+
+    /**
+     * 打开启动屏
+     */
+    public static void show(final Activity activity, final boolean fullScreen) {
+        show(activity, fullScreen, 0);
     }
 
     /**
