@@ -70,13 +70,24 @@ public class SplashScreen {
             }
             activity = mActivity.get();
         }
+
         if (activity == null) return;
 
-        activity.runOnUiThread(new Runnable() {
+        final Activity _activity = activity;
+
+        _activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (mSplashDialog != null && mSplashDialog.isShowing()) {
-                    mSplashDialog.dismiss();
+                if (mSplashDialog != null && mSplashDialog.isShowing() && !_activity.isFinishing()) {
+                    boolean isDestroyed = false;
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                        isDestroyed = _activity.isDestroyed();
+                    }
+
+                    if (!isDestroyed) {
+                        mSplashDialog.dismiss();
+                    }
                     mSplashDialog = null;
                 }
             }
