@@ -32,10 +32,10 @@ For React Native >= 0.47.0 use [v3.+](https://github.com/crazycodeboy/react-nati
 
 ## Installation
 
-### First step(Download):
+### Step One (Download):
 Run `npm i react-native-splash-screen --save`
 
-### Second step(Plugin Installation):
+### Step Two (Plugin Installation):
 
 #### Automatic installation
 
@@ -104,7 +104,7 @@ public class MainApplication extends Application implements ReactApplication {
 
 
 
-### Third step(Plugin Configuration):
+### Step Three (Plugin Configuration):
 
 **Android:**
 
@@ -161,7 +161,7 @@ Import `react-native-splash-screen` in your JS file.
 
 ### Android:
 
-Create a file called `launch_screen.xml` in `app/src/main/res/layout` (create the `layout`-folder if it doesn't exist). The contents of the file should be the following:
+1. Create a file called `launch_screen.xml` in `app/src/main/res/layout` (create the `layout`-folder if it doesn't exist). The contents of the file should be the following:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -172,7 +172,7 @@ Create a file called `launch_screen.xml` in `app/src/main/res/layout` (create th
 </LinearLayout>
 ```
 
-Customize your launch screen by creating a `launch_screen.png`-file and placing it in an appropriate `drawable`-folder. Android automatically scales drawable, so you do not necessarily need to provide images for all phone densities.
+2. Customize your launch screen by creating a `launch_screen.png`-file and placing it in an appropriate `drawable`-folder. Android automatically scales drawable, so you do not necessarily need to provide images for all phone densities.
 You can create splash screens in the following folders:
 * `drawable-ldpi`
 * `drawable-mdpi`
@@ -181,8 +181,7 @@ You can create splash screens in the following folders:
 * `drawable-xxhdpi`
 * `drawable-xxxhdpi`
 
-To modify the status bar color, you can add a color called primary_dark in color.xml
-
+3. Add a color called primary_dark in `color.xml`. The value of this modifies the status bar color.
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
