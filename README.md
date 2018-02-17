@@ -221,7 +221,7 @@ Create `android/app/src/main/res/values/colors.xml` and add
 </resources>
 ```
 
-Create a style definition for this in `android/app/src/main/res/values/colors.xml`:
+Create a style definition for this in `android/app/src/main/res/values/styles.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
