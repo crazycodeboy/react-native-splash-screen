@@ -45,7 +45,7 @@ Run `npm i react-native-splash-screen --save`
 
 **Android:**
 
-1. In your android/settings.gradle file, make the following additions:
+1. In your `android/settings.gradle` file, make the following additions:
 ```java
 include ':react-native-splash-screen'   
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
@@ -181,7 +181,7 @@ You can create splash screens in the following folders:
 * `drawable-xxhdpi`
 * `drawable-xxxhdpi`
 
-To modify the status bar color, you can add a color called primary_dark in color.xml
+Add a color called `primary_dark` in `app/src/main/res/values/color.xml`
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -238,7 +238,7 @@ SplashScreen.show(this, false, R.style.SplashScreenTheme);
 
 ### iOS    
 
-Customize your splash screen via LaunchImage or LaunchScreen.xib,
+Customize your splash screen via `LaunchImage` or `LaunchScreen.xib`,
 
 **Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
@@ -275,4 +275,4 @@ Pull requests are welcome. If you want to change the API or do something big it 
 
 ---
 
-**MIT Licensed**
+**[MIT Licensed](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/LICENSE)**
