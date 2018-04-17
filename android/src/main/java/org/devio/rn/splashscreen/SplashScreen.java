@@ -2,6 +2,9 @@ package org.devio.rn.splashscreen;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 
@@ -14,27 +17,43 @@ import java.lang.ref.WeakReference;
  * Email:crazycodeboy@gmail.com
  */
 public class SplashScreen {
-    private static int NULL_ID = 0;
     private static Dialog mSplashDialog;
     private static WeakReference<Activity> mActivity;
+
+    static class FullscreenDialog extends Dialog {
+
+        public FullscreenDialog(@NonNull Context context) {
+            super(context);
+            setOwnerActivity((Activity) context);
+        }
+
+        public FullscreenDialog(@NonNull Context context, int themeResId) {
+            super(context, themeResId);
+            setOwnerActivity((Activity) context);
+        }
+
+        protected FullscreenDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+            super(context, cancelable, cancelListener);
+            setOwnerActivity((Activity) context);
+        }
+    }
 
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final boolean fullScreen, final int themeResId) {
+    public static void show(final Activity activity, final boolean fullScreen) {
         if (activity == null) return;
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (!activity.isFinishing()) {
+                    if (fullScreen) {
+                        mSplashDialog = new FullscreenDialog(activity,R.style.SplashScreen_Fullscreen);
+                    } else {
+                        mSplashDialog = new Dialog(activity, R.style.SplashScreen_SplashTheme);
+                    }
 
-                    mSplashDialog = new Dialog(
-                            activity,
-                            themeResId != NULL_ID ? themeResId
-                                    : fullScreen ? R.style.SplashScreen_Fullscreen
-                                    : R.style.SplashScreen_SplashTheme
-                    );
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
 
@@ -44,13 +63,6 @@ public class SplashScreen {
                 }
             }
         });
-    }
-
-    /**
-     * 打开启动屏
-     */
-    public static void show(final Activity activity, final boolean fullScreen) {
-        show(activity, fullScreen, 0);
     }
 
     /**
