@@ -1,7 +1,7 @@
 <resources>
 
     <style name="SplashScreen_SplashAnimation">
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
     <style name="SplashScreen_SplashTheme" parent="Theme.AppCompat.NoActionBar">
