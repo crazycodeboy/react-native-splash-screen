@@ -1,12 +1,23 @@
 <resources>
+
     <style name="SplashScreen_SplashAnimation">
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
     <style name="SplashScreen_SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@style/SplashScreen_SplashAnimation</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">false</item><!--模糊，背景透明是这个-->
+        <item name="android:background">@android:color/transparent</item>
     </style>
+
     <style name="SplashScreen_Fullscreen" parent="SplashScreen_SplashTheme">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 </resources>
