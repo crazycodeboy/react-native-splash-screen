@@ -233,7 +233,7 @@ Create a style definition for this in `android/app/src/main/res/values/colors.xm
 
 Change your `show` method to include your custom style:
 ```java
-SplashScreen.show(this, false, R.style.SplashScreenTheme);
+SplashScreen.show(this, R.style.SplashScreenTheme);
 ```
 
 ### iOS    
