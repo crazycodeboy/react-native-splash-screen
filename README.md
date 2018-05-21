@@ -25,8 +25,8 @@ For React Native >= 0.47.0 use [v3.+](https://github.com/crazycodeboy/react-nati
 ## Examples  
 * [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
 
-![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-Android.gif)
-![react-native-splash-screen-iOS](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/master/examples/Screenshots/react-native-splash-screen-iOS.gif)
+![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/v3.0.0/examples/Screenshots/react-native-splash-screen-Android.gif)
+![react-native-splash-screen-iOS](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/v3.0.0/examples/Screenshots/react-native-splash-screen-iOS.gif)
 
 
 
@@ -45,7 +45,7 @@ Run `npm i react-native-splash-screen --save`
 
 **Android:**
 
-1. In your android/settings.gradle file, make the following additions:
+1. In your `android/settings.gradle` file, make the following additions:
 ```java
 include ':react-native-splash-screen'   
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
@@ -134,9 +134,10 @@ Update `AppDelegate.m` with the following additions:
 
 
 ```obj-c
-
 #import "AppDelegate.h"
-#import "RCTRootView.h"
+
+#import <React/RCTBundleURLProvider.h>
+#import <React/RCTRootView.h>
 #import "SplashScreen.h"  // here
 
 @implementation AppDelegate
@@ -181,7 +182,7 @@ You can create splash screens in the following folders:
 * `drawable-xxhdpi`
 * `drawable-xxxhdpi`
 
-To modify the status bar color, you can add a color called primary_dark in color.xml
+Add a color called `primary_dark` in `app/src/main/res/values/color.xml`
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -233,12 +234,12 @@ Create a style definition for this in `android/app/src/main/res/values/colors.xm
 
 Change your `show` method to include your custom style:
 ```java
-SplashScreen.show(this, false, R.style.SplashScreenTheme);
+SplashScreen.show(this, R.style.SplashScreenTheme);
 ```
 
 ### iOS    
 
-Customize your splash screen via LaunchImage or LaunchScreen.xib,
+Customize your splash screen via `LaunchImage` or `LaunchScreen.xib`,
 
 **Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
@@ -275,4 +276,4 @@ Pull requests are welcome. If you want to change the API or do something big it 
 
 ---
 
-**MIT Licensed**
+**[MIT Licensed](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/LICENSE)**
