@@ -16,6 +16,7 @@ A splash screen API for react-native which can programatically hide and show the
 - [Examples](#examples)
 - [Getting started](#getting-started)
 - [API](#api)
+- [Testing](#testing)
 - [Contribution](#contribution)
 - [Changes](#changes)
 
@@ -267,6 +268,20 @@ Method            | Type     | Optional | Description
 ----------------- | -------- | -------- | -----------
 show()   | function | false | Open splash screen (Native Method )
 hide() |  function  | false  |  Close splash screen     
+
+## Testing
+
+### Jest
+
+For Jest to work you will need to mock this component. Here is an example:
+
+```
+// __mocks__/react-native-splash-screen.js
+export default {
+  show: jest.fn().mockImplementation( () => { console.log('show splash screen'); } ),
+  hide: jest.fn().mockImplementation( () => { console.log('hide splash screen'); } ),
+}
+```
 
 ## Contribution
 
