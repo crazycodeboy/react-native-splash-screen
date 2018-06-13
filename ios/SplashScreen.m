@@ -48,4 +48,8 @@ RCT_EXPORT_METHOD(hide) {
     [SplashScreen hide];
 }
 
+RCT_EXPORT_METHOD(show) {
+    [SplashScreen show];
+}
+
 @end
