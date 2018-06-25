@@ -7,17 +7,17 @@
  * Email:crazycodeboy@gmail.com
  */
 
-#import "SplashScreen.h"
+#import "RNSplashScreen.h"
 #import <React/RCTBridge.h>
 
 static bool waiting = true;
 static bool addedJsLoadErrorObserver = false;
 
-@implementation SplashScreen
+@implementation RNSplashScreen
 - (dispatch_queue_t)methodQueue{
     return dispatch_get_main_queue();
 }
-RCT_EXPORT_MODULE()
+RCT_EXPORT_MODULE(SplashScreen)
 
 + (void)show {
     if (!addedJsLoadErrorObserver) {
@@ -41,11 +41,11 @@ RCT_EXPORT_MODULE()
 + (void) jsLoadError:(NSNotification*)notification
 {
     // If there was an error loading javascript, hide the splash screen so it can be shown.  Otherwise the splash screen will remain forever, which is a hassle to debug.
-    [SplashScreen hide];
+    [RNSplashScreen hide];
 }
 
 RCT_EXPORT_METHOD(hide) {
-    [SplashScreen hide];
+    [RNSplashScreen hide];
 }
 
 @end

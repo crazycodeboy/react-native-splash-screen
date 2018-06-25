@@ -8,7 +8,7 @@
  */
 #import <React/RCTBridgeModule.h>
 
-@interface SplashScreen : NSObject<RCTBridgeModule>
+@interface RNSplashScreen : NSObject<RCTBridgeModule>
 + (void)show;
 + (void)hide;
 @end
