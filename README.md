@@ -183,7 +183,7 @@ You can create splash screens in the following folders:
 * `drawable-xxhdpi`
 * `drawable-xxxhdpi`
 
-Add a color called `primary_dark` in `app/src/main/res/values/color.xml`
+Add a color called `primary_dark` in `app/src/main/res/values/colors.xml`
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
