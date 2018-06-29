@@ -9,7 +9,7 @@
 #import <React/RCTBridgeModule.h>
 #import <UIKit/UIKit.h>
 
-@interface SplashScreen : NSObject<RCTBridgeModule>
+@interface RNSplashScreen : NSObject<RCTBridgeModule>
 + (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView;
 + (void)show;
 + (void)hide;
