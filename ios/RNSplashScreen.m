@@ -49,7 +49,7 @@ RCT_EXPORT_METHOD(hide) {
 }
 
 RCT_EXPORT_METHOD(show) {
-    [SplashScreen show];
+    [RNSplashScreen show];
 }
 
 @end
