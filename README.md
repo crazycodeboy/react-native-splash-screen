@@ -139,7 +139,7 @@ Update `AppDelegate.m` with the following additions:
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "SplashScreen.h"  // here
+#import "RNSplashScreen.h"  // here
 
 @implementation AppDelegate
 
@@ -147,7 +147,7 @@ Update `AppDelegate.m` with the following additions:
 {
     // ...other code
 
-    [SplashScreen show];  // here
+    [RNSplashScreen show];  // here
     return YES;
 }
 
