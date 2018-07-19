@@ -1,12 +1,19 @@
 apply plugin: 'com.android.library'
 
-android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.3"
 
-    defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 26
+def DEFAULT_COMPILE_SDK_VERSION   = 26
+def DEFAULT_BUILD_TOOLS_VERSION   = "26.0.3"
+def DEFAULT_TARGET_SDK_VERSION    = 26
+def DEFAULT_MIN_SDK_VERSION       = 16
+def SUPPORT_LIB_VERSION = "26.1.0"
+
+android {
+        compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
+        buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
+
+  defaultConfig {
+        minSdkVersion rootProject.hasProperty('minSdkVersion') ? rootProject.minSdkVersion : DEFAULT_MIN_SDK_VERSION
+        targetSdkVersion rootProject.hasProperty('targetSdkVersion') ? rootProject.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
     }
@@ -18,9 +25,11 @@ android {
     }
 }
 
+def supportLibVersion = rootProject.hasProperty('supportLibVersion') ? rootProject.supportLibVersion : SUPPORT_LIB_VERSION
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile "com.facebook.react:react-native:+" // From node_modules
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:$supportLibVersion'
+    implementation "com.facebook.react:react-native:+" // From node_modules
 }
