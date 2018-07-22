@@ -22,8 +22,6 @@ android {
     }
 }
 
-def supportLibVersion = rootProject.hasProperty('supportLibVersion') ? rootProject.supportLibVersion : SUPPORT_LIB_VERSION
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
