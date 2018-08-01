@@ -99,7 +99,7 @@ public class MainApplication extends Application implements ReactApplication {
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2. Go to `node_modules` ➜ `react-native-splash-screen` and add `SplashScreen.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. To fix `'SplashScreen.h' file not found`, you have to select your project → Build Settings → Search Paths → Header Search Paths to add:
+4. To fix `'RNSplashScreen.h' file not found`, you have to select your project → Build Settings → Search Paths → Header Search Paths to add:
 
    `$(SRCROOT)/../node_modules/react-native-splash-screen/ios`
 
