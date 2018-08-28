@@ -26,15 +26,25 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
      * 打开启动屏
      */
     @ReactMethod
+    public void show(String newScreenOrientation) {
+        SplashScreen.show(getCurrentActivity(), newScreenOrientation);
+    }
+
+    @ReactMethod
     public void show() {
-        SplashScreen.show(getCurrentActivity());
+        SplashScreen.show(getCurrentActivity(), "");
     }
 
     /**
      * 关闭启动屏
      */
     @ReactMethod
+    public void hide(String newScreenOrientation) {
+        SplashScreen.hide(getCurrentActivity(), newScreenOrientation);
+    }
+
+    @ReactMethod
     public void hide() {
-        SplashScreen.hide(getCurrentActivity());
+        SplashScreen.hide(getCurrentActivity(), "");
     }
 }
