@@ -31,11 +31,51 @@ RCT_EXPORT_MODULE(SplashScreen)
     }
 }
 
++ (void)show:(NSString *)orientation  {
+    NSNumber *value=[NSNumber numberWithInt: 0];
+    if ([orientation isEqualToString:@"portrait"]) {
+        value=[NSNumber numberWithInt: 1];
+    } else if ([orientation isEqualToString:@"portraitUpsideDown"]) {
+        value=[NSNumber numberWithInt: 2];
+    } else if ([orientation isEqualToString:@"landscapeLeft"]) {
+        value=[NSNumber numberWithInt: 3];
+    } else if ([orientation isEqualToString:@"landscapeRight"]) {
+        value=[NSNumber numberWithInt: 4];
+    } else if ([orientation isEqualToString:@"faceUp"]) {
+        value=[NSNumber numberWithInt: 5];
+    } else if ([orientation isEqualToString:@"faceDown"]) {
+        value=[NSNumber numberWithInt: 6];
+    }
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+
+    [self show];
+}
+
 + (void)hide {
     dispatch_async(dispatch_get_main_queue(),
                    ^{
                        waiting = false;
                    });
+}
+
++ (void)hide:(NSString *)orientation {
+    [self hide];
+
+    NSNumber *value=[NSNumber numberWithInt: 0];
+    if ([orientation isEqualToString:@"portrait"]) {
+        value=[NSNumber numberWithInt: 1];
+    } else if ([orientation isEqualToString:@"portraitUpsideDown"]) {
+        value=[NSNumber numberWithInt: 2];
+    } else if ([orientation isEqualToString:@"landscapeLeft"]) {
+        value=[NSNumber numberWithInt: 3];
+    } else if ([orientation isEqualToString:@"landscapeRight"]) {
+        value=[NSNumber numberWithInt: 4];
+    } else if ([orientation isEqualToString:@"faceUp"]) {
+        value=[NSNumber numberWithInt: 5];
+    } else if ([orientation isEqualToString:@"faceDown"]) {
+        value=[NSNumber numberWithInt: 6];
+    }
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
 
 + (void) jsLoadError:(NSNotification*)notification

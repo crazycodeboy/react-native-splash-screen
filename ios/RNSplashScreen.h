@@ -10,5 +10,7 @@
 
 @interface RNSplashScreen : NSObject<RCTBridgeModule>
 + (void)show;
++ (void)show:(NSString *)orientation;
 + (void)hide;
++ (void)hide:(NSString *)orientation;
 @end
