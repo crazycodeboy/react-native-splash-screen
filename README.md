@@ -23,7 +23,7 @@ A splash screen API for react-native which can programatically hide and show the
 ## Changes
 For React Native >= 0.47.0 use [v3.+](https://github.com/crazycodeboy/react-native-splash-screen/releases), for React Native < 0.47.0 use [v2.1.0](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)
 
-## Examples  
+## Examples
 * [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
 
 ![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/v3.0.0/examples/Screenshots/react-native-splash-screen-Android.gif)
@@ -42,13 +42,13 @@ Run `npm i react-native-splash-screen --save`
 
 `react-native link react-native-splash-screen` or `rnpm link react-native-splash-screen`
 
-#### Manual installation  
+#### Manual installation
 
 **Android:**
 
 1. In your `android/settings.gradle` file, make the following additions:
 ```java
-include ':react-native-splash-screen'   
+include ':react-native-splash-screen'
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 ```
 
@@ -62,7 +62,7 @@ dependencies {
 }
 ```
 
-3. Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
+3. Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:
 
 ```java
 // react-native-splash-screen >= 0.3.1
@@ -135,11 +135,7 @@ Update `AppDelegate.m` with the following additions:
 
 
 ```obj-c
-#import "AppDelegate.h"
-
-#import <React/RCTBundleURLProvider.h>
-#import <React/RCTRootView.h>
-#import "RNSplashScreen.h"  // here
+#import "RNSplashScreen.h"
 
 @implementation AppDelegate
 
@@ -147,19 +143,21 @@ Update `AppDelegate.m` with the following additions:
 {
     // ...other code
 
-    [RNSplashScreen show];  // here
+    RNSplashScreen *launchScreen = [RNSplashScreen allocWithZone:nil];
+    [launchScreen show];
     return YES;
 }
 
 @end
-
 ```
 
-## Getting started  
+Create a LaunchScreen.storyboard and make sure the root view controller has a storyboard identifier of "LaunchScreen".
+
+## Getting started
 
 Import `react-native-splash-screen` in your JS file.
 
-`import SplashScreen from 'react-native-splash-screen'`    
+`import SplashScreen from 'react-native-splash-screen'`
 
 ### Android:
 
@@ -238,7 +236,7 @@ Change your `show` method to include your custom style:
 SplashScreen.show(this, R.style.SplashScreenTheme);
 ```
 
-### iOS    
+### iOS
 
 Customize your splash screen via `LaunchImage` or `LaunchScreen.xib`,
 
