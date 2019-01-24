@@ -2,6 +2,7 @@ build/
 gradle/
 gradlew
 gradlew.bat
+.gradle/
 local.properties
 # Logs
 logs
