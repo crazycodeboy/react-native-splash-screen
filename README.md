@@ -12,13 +12,15 @@ A splash screen API for react-native which can programatically hide and show the
 
 ## Content
 
+- [Changes](#changes)
 - [Installation](#installation)
 - [Examples](#examples)
 - [Getting started](#getting-started)
 - [API](#api)
 - [Testing](#testing)
+- [Troubleshooting](#troubleshooting)
 - [Contribution](#contribution)
-- [Changes](#changes)
+
 
 ## Changes
 For React Native >= 0.47.0 use [v3.+](https://github.com/crazycodeboy/react-native-splash-screen/releases), for React Native < 0.47.0 use [v2.1.0](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)
@@ -281,6 +283,28 @@ export default {
   show: jest.fn().mockImplementation( () => { console.log('show splash screen'); } ),
   hide: jest.fn().mockImplementation( () => { console.log('hide splash screen'); } ),
 }
+```
+
+## Troubleshooting 
+
+### Splash screen always appears stretched/distorted
+Add the ImageView with a scaleType in the `launch_screen.xml`, e.g.:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+>
+  <ImageView 
+    android:src="@drawable/launch_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="centerCrop"
+  >
+  </ImageView>
+</FrameLayout>
 ```
 
 ## Contribution
