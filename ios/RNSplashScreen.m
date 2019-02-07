@@ -12,6 +12,7 @@
 
 static bool waiting = true;
 static bool addedJsLoadErrorObserver = false;
+static UIView* loadingView = nil;
 
 @implementation RNSplashScreen
 - (dispatch_queue_t)methodQueue{
@@ -31,11 +32,28 @@ RCT_EXPORT_MODULE(SplashScreen)
     }
 }
 
++ (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
+    if (!loadingView) {
+        loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
+        CGRect frame = rootView.frame;
+        frame.origin = CGPointMake(0, 0);
+        loadingView.frame = frame;
+    }
+    waiting = false;
+    
+    [rootView addSubview:loadingView];
+}
+
 + (void)hide {
-    dispatch_async(dispatch_get_main_queue(),
-                   ^{
-                       waiting = false;
-                   });
+    if (waiting) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            waiting = false;
+        });
+    } else {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [loadingView removeFromSuperview];
+        });
+    }
 }
 
 + (void) jsLoadError:(NSNotification*)notification
