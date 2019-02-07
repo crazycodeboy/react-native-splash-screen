@@ -1,8 +1,8 @@
-What `react-native` version are you using?
+Run `react-native info` in your project and share the content.
 
-What `react-native-pdf` version are you using?
+What `react-native-splash-screen` version are you using?
 
-What platform does your issue occur on? (android/ios/both)
+What platform does your issue occur on? (Android/iOS/Both)
 
 Describe your issue as precisely as possible : 
   1) Steps to reproduce the issue or to explain in which case you get the issue
