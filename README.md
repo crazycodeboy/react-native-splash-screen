@@ -1,4 +1,4 @@
-# react-native-splash-screen
+# react-native-splash-screen-update
 
 
 [![Download](https://img.shields.io/badge/Download-v3.2.0-ff69b4.svg) ](https://www.npmjs.com/package/react-native-splash-screen)
@@ -36,13 +36,13 @@ For React Native >= 0.47.0 use [v3.+](https://github.com/crazycodeboy/react-nati
 ## Installation
 
 ### First step(Download):
-Run `npm i react-native-splash-screen --save`
+Run `npm i react-native-splash-screen-update --save`
 
 ### Second step(Plugin Installation):
 
 #### Automatic installation
 
-`react-native link react-native-splash-screen` or `rnpm link react-native-splash-screen`
+`react-native link react-native-splash-screen-update` or `rnpm link react-native-splash-screen-update`
 
 #### Manual installation  
 
@@ -50,26 +50,26 @@ Run `npm i react-native-splash-screen --save`
 
 1. In your `android/settings.gradle` file, make the following additions:
 ```java
-include ':react-native-splash-screen'   
-project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
+include ':react-native-splash-screen-update'   
+project(':react-native-splash-screen-update').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen-update/android')
 ```
 
-2. In your android/app/build.gradle file, add the `:react-native-splash-screen` project as a compile-time dependency:
+2. In your android/app/build.gradle file, add the `:react-native-splash-screen-update` project as a compile-time dependency:
 
 ```java
 ...
 dependencies {
     ...
-    compile project(':react-native-splash-screen')
+    compile project(':react-native-splash-screen-update')
 }
 ```
 
 3. Update the MainApplication.java file to use `react-native-splash-screen` via the following changes:   
 
 ```java
-// react-native-splash-screen >= 0.3.1
+// react-native-splash-screen-update >= 0.3.1
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
-// react-native-splash-screen < 0.3.1
+// react-native-splash-screen-update < 0.3.1
 import com.cboy.rn.splashscreen.SplashScreenReactPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -103,7 +103,7 @@ public class MainApplication extends Application implements ReactApplication {
 3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. To fix `'RNSplashScreen.h' file not found`, you have to select your project → Build Settings → Search Paths → Header Search Paths to add:
 
-   `$(SRCROOT)/../node_modules/react-native-splash-screen/ios`
+   `$(SRCROOT)/../node_modules/react-native-splash-screen-update/ios`
 
 
 
@@ -111,14 +111,14 @@ public class MainApplication extends Application implements ReactApplication {
 
 **Android:**
 
-Update the `MainActivity.java` to use `react-native-splash-screen` via the following changes:
+Update the `MainActivity.java` to use `react-native-splash-screen-update` via the following changes:
 
 ```java
 import android.os.Bundle; // here
 import com.facebook.react.ReactActivity;
-// react-native-splash-screen >= 0.3.1
+// react-native-splash-screen-update >= 0.3.1
 import org.devio.rn.splashscreen.SplashScreen; // here
-// react-native-splash-screen < 0.3.1
+// react-native-splash-screen-update < 0.3.1
 import com.cboy.rn.splashscreen.SplashScreen; // here
 
 public class MainActivity extends ReactActivity {
@@ -161,9 +161,9 @@ Update `AppDelegate.m` with the following additions:
 
 ## Getting started  
 
-Import `react-native-splash-screen` in your JS file.
+Import `react-native-splash-screen-update` in your JS file.
 
-`import SplashScreen from 'react-native-splash-screen'`    
+`import SplashScreen from 'react-native-splash-screen-update'`    
 
 ### Android:
 
