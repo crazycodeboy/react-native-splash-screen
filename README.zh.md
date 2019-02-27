@@ -67,7 +67,7 @@ project(':react-native-splash-screen').projectDir = new File(rootProject.project
 ...
 dependencies {
     ...
-    compile project(':react-native-splash-screen')
+    implementation project(':react-native-splash-screen')
 }
 ```
 
