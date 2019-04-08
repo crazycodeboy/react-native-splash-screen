@@ -10,56 +10,50 @@
 #import "RNSplashScreen.h"
 #import <React/RCTBridge.h>
 
-static bool waiting = true;
-static bool addedJsLoadErrorObserver = false;
-static UIView* loadingView = nil;
-
 @implementation RNSplashScreen
 - (dispatch_queue_t)methodQueue{
     return dispatch_get_main_queue();
 }
+
 RCT_EXPORT_MODULE(SplashScreen)
 
+NSInteger const RNSplashScreenOverlayTag = 39293;
+
 + (void)show {
-    if (!addedJsLoadErrorObserver) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jsLoadError:) name:RCTJavaScriptDidFailToLoadNotification object:nil];
-        addedJsLoadErrorObserver = true;
-    }
+  NSString* launchImageName = [RNSplashScreen launchImageNameForOrientation:UIDeviceOrientationPortrait];
+  UIImage *image = [UIImage imageNamed:launchImageName];
+  if (image == nil) return;
 
-    while (waiting) {
-        NSDate* later = [NSDate dateWithTimeIntervalSinceNow:0.1];
-        [[NSRunLoop mainRunLoop] runUntilDate:later];
-    }
-}
-
-+ (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
-    if (!loadingView) {
-        loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
-        CGRect frame = rootView.frame;
-        frame.origin = CGPointMake(0, 0);
-        loadingView.frame = frame;
-    }
-    waiting = false;
-    
-    [rootView addSubview:loadingView];
+  UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+  // Give some decent tagvalue or keep a reference of imageView in self
+  imageView.tag = RNSplashScreenOverlayTag;
+  imageView.contentMode = UIViewContentModeScaleAspectFill;
+  [UIApplication.sharedApplication.keyWindow.subviews.lastObject addSubview:imageView];
 }
 
 + (void)hide {
-    if (waiting) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            waiting = false;
-        });
-    } else {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [loadingView removeFromSuperview];
-        });
-    }
+  UIImageView *imageView = (UIImageView *)[UIApplication.sharedApplication.keyWindow.subviews.lastObject viewWithTag:RNSplashScreenOverlayTag];
+  if (imageView != nil) {
+    [imageView removeFromSuperview];
+  }
 }
 
-+ (void) jsLoadError:(NSNotification*)notification
-{
-    // If there was an error loading javascript, hide the splash screen so it can be shown.  Otherwise the splash screen will remain forever, which is a hassle to debug.
-    [RNSplashScreen hide];
++ (NSString *)launchImageNameForOrientation:(UIDeviceOrientation)orientation {
+  CGSize viewSize = [[UIScreen mainScreen] bounds].size;
+  NSString* viewOrientation = @"Portrait";
+  if (UIDeviceOrientationIsLandscape(orientation)) {
+    viewSize = CGSizeMake(viewSize.height, viewSize.width);
+    viewOrientation = @"Landscape";
+  }
+
+  NSArray* imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+  for (NSDictionary* dict in imagesDict) {
+    CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+    if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]])
+      return dict[@"UILaunchImageName"];
+  }
+
+  return nil;
 }
 
 RCT_EXPORT_METHOD(hide) {
