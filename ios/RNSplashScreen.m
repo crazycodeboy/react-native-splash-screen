@@ -57,13 +57,18 @@ NSInteger const RNSplashScreenOverlayTag = 39293;
   }
 
   NSArray* imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+  NSString* fallback = nil;
   for (NSDictionary* dict in imagesDict) {
     CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+    NSString *imageName = dict[@"UILaunchImageName"];
     if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]])
-      return dict[@"UILaunchImageName"];
+      return imageName;
+
+    // TODO: find best matching fallback image
+    if (fallback == nil) fallback = imageName;
   }
 
-  return nil;
+  return fallback;
 }
 
 RCT_EXPORT_METHOD(hide) {
