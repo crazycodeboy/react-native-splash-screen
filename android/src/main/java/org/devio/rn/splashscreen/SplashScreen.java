@@ -23,6 +23,8 @@ public class SplashScreen {
      */
     public static void show(final Activity activity, final int themeResId) {
         if (activity == null) return;
+        if (mSplashDialog != null) return;
+
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
             @Override
