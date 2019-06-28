@@ -3,6 +3,11 @@ package org.devio.rn.splashscreen;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
+import android.view.View;
+import android.graphics.Color;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.ReadableMap;
 
 import java.lang.ref.WeakReference;
 
@@ -21,7 +26,7 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final int themeResId) {
+    public static void show(final Activity activity, final ReadableMap options) {
         if (activity == null) return;
         if (mSplashDialog != null) return;
 
@@ -30,6 +35,12 @@ public class SplashScreen {
             @Override
             public void run() {
                 if (!activity.isFinishing()) {
+                    String bgColor = getBackgroundColorOption(options);
+                    if (bgColor != null) {
+                        setBackgroundColorSync(activity, bgColor);
+                    }
+
+                    int themeResId = getThemeIdOption(options);
                     mSplashDialog = new Dialog(activity, themeResId);
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
@@ -45,23 +56,15 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final boolean fullScreen) {
-        int resourceId = fullScreen ? R.style.SplashScreen_Fullscreen : R.style.SplashScreen_SplashTheme;
-
-        show(activity, resourceId);
-    }
-
-    /**
-     * 打开启动屏
-     */
     public static void show(final Activity activity) {
-        show(activity, false);
+        WritableMap options = Arguments.createMap();
+        show(activity, options);
     }
 
     /**
      * 关闭启动屏
      */
-    public static void hide(Activity activity) {
+    public static void hide(Activity activity, final ReadableMap options) {
         if (activity == null) {
             if (mActivity == null) {
                 return;
@@ -88,7 +91,36 @@ public class SplashScreen {
                     }
                     mSplashDialog = null;
                 }
+
+                String bgColor = getBackgroundColorOption(options);
+                if (bgColor != null) {
+                    setBackgroundColorSync(_activity, bgColor);
+                }
             }
         });
+    }
+
+    public static void setBackgroundColor(final Activity activity, final String color) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setBackgroundColorSync(activity, color);
+            }
+        });
+    }
+
+    private static void setBackgroundColorSync(Activity activity, String color) {
+        View rootView = activity.getWindow().getDecorView();
+        int parsedColor = Color.parseColor(color);
+        rootView.getRootView().setBackgroundColor(parsedColor);
+    }
+
+    private static String getBackgroundColorOption(ReadableMap options) {
+        return options.hasKey("backgroundColor") ? options.getString("backgroundColor") : null;
+    }
+
+    private static int getThemeIdOption(ReadableMap options) {
+        boolean fullScreen = options.hasKey("fullScreen") ? options.getBoolean("fullScreen") : false;
+        return fullScreen ? R.style.SplashScreen_Fullscreen : R.style.SplashScreen_SplashTheme;
     }
 }

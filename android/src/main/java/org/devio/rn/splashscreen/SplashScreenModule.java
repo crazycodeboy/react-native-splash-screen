@@ -3,6 +3,8 @@ package org.devio.rn.splashscreen;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.Arguments;
 
 /**
  * SplashScreen
@@ -27,7 +29,15 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
      */
     @ReactMethod
     public void show() {
-        SplashScreen.show(getCurrentActivity());
+        show(Arguments.createMap());
+    }
+
+    /**
+     * 打开启动屏
+     */
+    @ReactMethod
+    public void show(ReadableMap options) {
+        SplashScreen.show(getCurrentActivity(), options);
     }
 
     /**
@@ -35,6 +45,19 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
      */
     @ReactMethod
     public void hide() {
-        SplashScreen.hide(getCurrentActivity());
+        hide(Arguments.createMap());
+    }
+
+    /**
+     * 关闭启动屏
+     */
+    @ReactMethod
+    public void hide(ReadableMap options) {
+        SplashScreen.hide(getCurrentActivity(), options);
+    }
+
+    @ReactMethod
+    public void setBackgroundColor(String color) {
+        SplashScreen.setBackgroundColor(getCurrentActivity(), color);
     }
 }
