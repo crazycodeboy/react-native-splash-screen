@@ -22,13 +22,13 @@
     "android",
     "ios"
   ],
+  "peerDependencies": {
+    "react-native": ">=0.60.0"
+  },
   "author": "crazycodeboy",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/crazycodeboy/react-native-splash-screen/issues"
-  },
-  "peerDependencies": {
-    "react-native": ">=0.57.0"
   },
   "homepage": "https://github.com/crazycodeboy/react-native-splash-screen#readme"
 }
