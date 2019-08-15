@@ -21,24 +21,45 @@ RCT_EXPORT_MODULE(SplashScreen)
         [[UIStoryboard storyboardWithName:@"LaunchScreen"
                                    bundle:[NSBundle mainBundle]]
             instantiateViewControllerWithIdentifier:@"LaunchScreen"];
+    
   });
   return sharedInstance;
 }
 
-- (void)setup {
++ (instancetype)sharedInstance {
+  return [RNSplashScreen allocWithZone:nil];
+}
+
++ (void)show {
+  [[RNSplashScreen sharedInstance] addLaunchScreen];
+}
+
++ (void)hide {
+  [[RNSplashScreen sharedInstance] removeLaunchScreen];
+}
+
++ (void)showAnimated {
+  [[RNSplashScreen sharedInstance] show];
+}
+
++ (void)hideAnimated {
+  [[RNSplashScreen sharedInstance] hide];
+}
+
+- (void)addLaunchScreen {
   UIViewController *viewController =
-      [[[[UIApplication sharedApplication] delegate] window]
-          rootViewController];
+  [[[[UIApplication sharedApplication] delegate] window] rootViewController];
   [viewController.view addSubview:self.launchScreen.view];
+}
+
+- (void)removeLaunchScreen {
+  [self.launchScreen.view removeFromSuperview];
 }
 
 RCT_EXPORT_METHOD(show) {
   dispatch_async(dispatch_get_main_queue(), ^{
     self.launchScreen.view.alpha = 0.0;
-    UIViewController *viewController =
-        [[[[UIApplication sharedApplication] delegate] window]
-            rootViewController];
-    [viewController.view addSubview:self.launchScreen.view];
+    [self addLaunchScreen];
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn
@@ -59,7 +80,7 @@ RCT_EXPORT_METHOD(hide) {
           self.launchScreen.view.alpha = 0;
         }
         completion:^(BOOL finished) {
-          [self.launchScreen.view removeFromSuperview];
+          [self removeLaunchScreen];
         }];
   });
 }

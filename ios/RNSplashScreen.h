@@ -5,5 +5,9 @@
 @property(nonatomic, strong) UIViewController *launchScreen;
 - (void)show;
 - (void)hide;
-- (void)setup;
++ (void)show;
++ (void)showAnimated;
++ (void)hide;
++ (void)hideAnimated;
++ (instancetype)sharedInstance;
 @end
