@@ -44,7 +44,7 @@ public class SplashScreen {
      * 打开启动屏
      */
     public static void show(final Activity activity, final boolean animateIn) {
-        int resourceId = animateIn ? R.style.SplashScreen_Startup : R.style.SplashScreen_AnimateIn;
+        int resourceId = animateIn ? R.style.SplashScreen_AnimateIn : R.style.SplashScreen_Startup;
         show(activity, resourceId);
     }
 
