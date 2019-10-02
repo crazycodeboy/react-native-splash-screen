@@ -38,7 +38,9 @@ For React Native >= 0.47.0 use [v3.+](https://github.com/crazycodeboy/react-nati
 
 ### First step(Download):
 **Android**
-`npm i react-native-splash-screen --save`
+```sh
+npm i react-native-splash-screen --save
+```
 
 **IOS**
 ```sh
