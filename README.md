@@ -37,9 +37,19 @@ For React Native >= 0.47.0 use [v3.+](https://github.com/crazycodeboy/react-nati
 ## Installation
 
 ### First step(Download):
-Run `npm i react-native-splash-screen --save`
+**Android**
+`npm i react-native-splash-screen --save`
+
+**IOS**
+```sh
+npm i react-native-splash-screen --save
+cd ios
+pod update
+cd ..
+```
 
 ### Second step(Plugin Installation):
+Skip to step Three if you are using React Native >= 0.60 since linking is automatically done in the new versions.
 
 #### Automatic installation
 
@@ -214,6 +224,8 @@ Open `android/app/src/main/res/values/styles.xml` and add `<item name="android:w
     </style>
 </resources>
 ```
+To remove the white screen when the app starts open `android/app/src/main/res/values/styles.xml` and add  `<item name="android:windowDisablePreview">true</item>` to "AppTheme" like in the above example.
+
 
 **To learn more see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
