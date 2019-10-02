@@ -1,16 +1,13 @@
-package org.devio.rn.splashscreen;
+package ar.rn.splashscreen;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
+import ar.devio.rn.splashscreen.SplashScreen;
+
 /**
  * SplashScreen
- * 启动屏
- * from：http://www.devio.org
- * Author:CrazyCodeBoy
- * GitHub:https://github.com/crazycodeboy
- * Email:crazycodeboy@gmail.com
  */
 public class SplashScreenModule extends ReactContextBaseJavaModule{
     public SplashScreenModule(ReactApplicationContext reactContext) {
@@ -22,17 +19,11 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
         return "SplashScreen";
     }
 
-    /**
-     * 打开启动屏
-     */
     @ReactMethod
     public void show() {
         SplashScreen.show(getCurrentActivity());
     }
 
-    /**
-     * 关闭启动屏
-     */
     @ReactMethod
     public void hide() {
         SplashScreen.hide(getCurrentActivity());
