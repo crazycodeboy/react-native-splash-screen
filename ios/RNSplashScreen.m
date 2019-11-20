@@ -44,6 +44,23 @@ RCT_EXPORT_MODULE(SplashScreen)
     [rootView addSubview:loadingView];
 }
 
++ (void)showStoryboardSplash:(NSString*)storyboard storyboardId:(NSString*)storyboardId inRootView:(UIView*)rootView {
+    if (!loadingView) {
+        UIStoryboard *story = [UIStoryboard storyboardWithName:splashScreen bundle:[NSBundle mainBundle]];
+        UIViewController * splashScreenViewController = nil;
+        if (storyboardId !== nil) {
+            splashScreenViewController = [story instantiateViewControllerWithIdentifier:@"launchScreen"];
+        } else {
+            splashScreenViewController = [story instantiateInitialViewController];
+        }
+        loadingView = splashScreenViewController.view;
+        loadingView.frame = [[UIScreen mainScreen] bounds];
+    }
+    waiting = false;
+    
+    [rootView addSubview:loadingView];
+}
+
 + (void)hide {
     if (waiting) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -51,7 +68,15 @@ RCT_EXPORT_MODULE(SplashScreen)
         });
     } else {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [loadingView removeFromSuperview];
+            [UIView animateWithDuration:0.3
+                 delay:0
+               options:UIViewAnimationOptionCurveEaseIn
+            animations:^{
+                loadingView.alpha = 0.0;
+            }
+            completion:^(BOOL finished){
+                [loadingView removeFromSuperview];
+            }];
         });
     }
 }
