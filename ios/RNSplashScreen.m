@@ -46,10 +46,10 @@ RCT_EXPORT_MODULE(SplashScreen)
 
 + (void)showStoryboardSplash:(NSString*)storyboard storyboardId:(NSString*)storyboardId inRootView:(UIView*)rootView {
     if (!loadingView) {
-        UIStoryboard *story = [UIStoryboard storyboardWithName:splashScreen bundle:[NSBundle mainBundle]];
+        UIStoryboard *story = [UIStoryboard storyboardWithName:storyboard bundle:[NSBundle mainBundle]];
         UIViewController * splashScreenViewController = nil;
-        if (storyboardId !== nil) {
-            splashScreenViewController = [story instantiateViewControllerWithIdentifier:@"launchScreen"];
+        if (storyboardId) {
+            splashScreenViewController = [story instantiateViewControllerWithIdentifier:storyboardId];
         } else {
             splashScreenViewController = [story instantiateInitialViewController];
         }
