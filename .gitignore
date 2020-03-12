@@ -44,7 +44,6 @@ jspm_packages
 
 .DS_Store
 # xcode
-project.xcworkspace
-xcshareddata
-xcuserdata
+**/xcuserdata
+**/RNSplashScreen.xcodeproj/project.xcworkspace
 
