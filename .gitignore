@@ -41,3 +41,10 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 .idea
+
+.DS_Store
+# xcode
+project.xcworkspace
+xcshareddata
+xcuserdata
+

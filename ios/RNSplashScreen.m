@@ -18,9 +18,9 @@ static UIView* loadingView = nil;
 - (dispatch_queue_t)methodQueue{
     return dispatch_get_main_queue();
 }
-RCT_EXPORT_MODULE(SplashScreen)
+RCT_EXPORT_MODULE()
 
-+ (void)show {
++ (void) show {
     if (!addedJsLoadErrorObserver) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jsLoadError:) name:RCTJavaScriptDidFailToLoadNotification object:nil];
         addedJsLoadErrorObserver = true;
@@ -32,7 +32,7 @@ RCT_EXPORT_MODULE(SplashScreen)
     }
 }
 
-+ (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
++ (void) showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
     if (!loadingView) {
         loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
         CGRect frame = rootView.frame;
@@ -44,7 +44,7 @@ RCT_EXPORT_MODULE(SplashScreen)
     [rootView addSubview:loadingView];
 }
 
-+ (void)hide {
++ (void) hide {
     if (waiting) {
         dispatch_async(dispatch_get_main_queue(), ^{
             waiting = false;
