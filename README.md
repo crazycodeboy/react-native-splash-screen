@@ -99,6 +99,11 @@ public class MainApplication extends Application implements ReactApplication {
 
 **iOS:**
 
+1. `cd ios`
+2. `run pod install`
+
+>OR
+
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2. Go to `node_modules` ➜ `react-native-splash-screen` and add `SplashScreen.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libSplashScreen.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
@@ -245,9 +250,12 @@ SplashScreen.show(this, R.style.SplashScreenTheme);
 
 ### iOS    
 
-Customize your splash screen via `LaunchImage` or `LaunchScreen.xib`,
+Customize your splash screen via `LaunchScreen.storyboard` or `LaunchScreen.xib`。
 
 **Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
+
+- [via LaunchScreen.storyboard Tutorial](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/add-LaunchScreen-tutorial-for-ios.md)
+
 
 ## Usage
 

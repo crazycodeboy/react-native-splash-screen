@@ -29,3 +29,5 @@ DerivedData
 node_modules/
 npm-debug.log
 examples/
+screenshot/
+*.md

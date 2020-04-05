@@ -3,7 +3,7 @@
 [![Download](https://img.shields.io/badge/Download-v3.1.1-ff69b4.svg) ](https://www.npmjs.com/package/react-native-splash-screen)
 [ ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/crazycodeboy/react-native-splash-screen/pulls)
 [ ![react-native-splash-screen release](https://img.shields.io/github/release/crazycodeboy/react-native-splash-screen.svg?maxAge=2592000?style=flat-square)](https://github.com/crazycodeboy/GitHubPopular/releases)
-[ ![language English](https://img.shields.io/badge/language-English-feb252.svg)](https://github.com/crazycodeboy/GitHubPopular/) 
+[ ![language English](https://img.shields.io/badge/language-English-feb252.svg)](https://github.com/crazycodeboy/GitHubPopular/)
 [![License MIT](http://img.shields.io/badge/license-MIT-orange.svg?style=flat)](https://raw.githubusercontent.com/crazycodeboy/react-native-check-box/master/LICENSE)
 [ ![原理 解析](https://img.shields.io/badge/原理-解析-brightgreen.svg)](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)
 
@@ -20,7 +20,7 @@ React Native启动屏，解决iOS，Android启动白屏问题，支持Android和
 - [贡献](#贡献)
 - [改变](#改变)
 
-## 演示  
+## 演示
 * [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
 
 ![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/v3.0.0/examples/Screenshots/react-native-splash-screen-Android.gif)
@@ -55,7 +55,7 @@ React Native启动屏，解决iOS，Android启动白屏问题，支持Android和
 
 1.在你的 android/settings.gradle 文件中添加下列代码:
 ```
-include ':react-native-splash-screen'   
+include ':react-native-splash-screen'
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 ```
 
@@ -71,7 +71,7 @@ dependencies {
 }
 ```
 
-3.更新你的MainApplication.java 文件，如下:   
+3.更新你的MainApplication.java 文件，如下:
 
 ```java
 public class MainApplication extends Application implements ReactApplication {
@@ -106,9 +106,9 @@ public class MainApplication extends Application implements ReactApplication {
 3.  在XCode中打开`Build Phases` ➜ `Link Binary With Libraries`将`libSplashScreen.a` 添加到你的项目中。
 4.  如果在使用过过程中出现 `'SplashScreen.h' file not found`问题,你可以下面的代码添加到Header Search Paths中,步骤如下:
 
- 
+
 选择你的项目,TARGET  → Build Settings → Search Paths → Header Search Paths 添加:
-      
+
       `$(SRCROOT)/../node_modules/react-native-splash-screen/ios`
 
 
@@ -155,12 +155,12 @@ public class MainActivity extends ReactActivity {
 ```
 
 
-## 使用说明  
+## 使用说明
 
 将 `react-native-splash-screen` 导入你的JS 文件。
 
 
-`import SplashScreen from 'react-native-splash-screen'`    
+`import SplashScreen from 'react-native-splash-screen'`
 
 **Android:**
 
@@ -195,9 +195,9 @@ public class MainActivity extends ReactActivity {
 
 **更详细的介绍，可以查看 [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
-**iOS**  
+**iOS**
 
-iOS可以通过LaunchImage或LaunchScreen.xib来自定义你的启动屏幕。
+iOS可以通过LaunchScreen.storyboard或LaunchScreen.xib来自定义你的启动屏幕。
 
 **更详细的介绍，可以查看 [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
 
@@ -221,7 +221,7 @@ export default class WelcomePage extends Component {
 方法            | 类型     | 可选 | 描述
 ----------------- | -------- | -------- | -----------
 show()   | function | false | 打开启动屏幕(原生方法)
-hide() |  function  | false  |  关闭启动屏幕   
+hide() |  function  | false  |  关闭启动屏幕
 
 ## 贡献
 

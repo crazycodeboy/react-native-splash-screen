@@ -32,23 +32,23 @@ export default class example extends Component {
             <TouchableOpacity
                 style={styles.container}
                 onPress={(e)=> {
-                    Linking.openURL('http://www.devio.org/');
+                    Linking.openURL('https://coding.imooc.com/class/304.html');
                 }}
             >
-              <View >
-                <Text style={styles.item}>
-                  SplashScreen 启动屏
-                </Text>
-                <Text style={styles.item}>
-                  @：http://www.devio.org/
-                </Text>
-                <Text style={styles.item}>
-                  GitHub:https://github.com/crazycodeboy
-                </Text>
-                <Text style={styles.item}>
-                  Email:crazycodeboy@gmail.com
-                </Text>
-              </View>
+                <View >
+                    <Text style={styles.item}>
+                        SplashScreen 启动屏
+                    </Text>
+                    <Text style={styles.item}>
+                        @：http://www.devio.org/
+                    </Text>
+                    <Text style={styles.item}>
+                        GitHub:https://github.com/crazycodeboy
+                    </Text>
+                    <Text style={styles.item}>
+                        Email:crazycodeboy@gmail.com
+                    </Text>
+                </View>
             </TouchableOpacity>
         )
     }
