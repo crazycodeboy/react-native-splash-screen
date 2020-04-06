@@ -20,7 +20,7 @@ static UIView* loadingView = nil;
 }
 RCT_EXPORT_MODULE(SplashScreen)
 
-+ (void)show {
++ (void) show {
     if (!addedJsLoadErrorObserver) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jsLoadError:) name:RCTJavaScriptDidFailToLoadNotification object:nil];
         addedJsLoadErrorObserver = true;
@@ -32,9 +32,18 @@ RCT_EXPORT_MODULE(SplashScreen)
     }
 }
 
-+ (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
++ (void) showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
     if (!loadingView) {
-        loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
+        
+        // load from storyboard
+        UIStoryboard *launchSb = [UIStoryboard storyboardWithName:splashScreen bundle:nil];
+        UIViewController *launchSbVC = [launchSb instantiateInitialViewController];
+        loadingView = launchSbVC.view;
+        
+        // load from nib: not working
+        //NSArray *launchNib = [[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil];
+        //loadingView = [launchNib objectAtIndex:0];
+        
         CGRect frame = rootView.frame;
         frame.origin = CGPointMake(0, 0);
         loadingView.frame = frame;
@@ -44,7 +53,7 @@ RCT_EXPORT_MODULE(SplashScreen)
     [rootView addSubview:loadingView];
 }
 
-+ (void)hide {
++ (void) hide {
     if (waiting) {
         dispatch_async(dispatch_get_main_queue(), ^{
             waiting = false;

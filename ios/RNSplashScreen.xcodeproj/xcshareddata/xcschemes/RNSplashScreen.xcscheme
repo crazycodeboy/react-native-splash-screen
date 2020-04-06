@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D7682751D8E76B80014119E"
-               BuildableName = "libSplashScreen.a"
-               BlueprintName = "SplashScreen"
-               ReferencedContainer = "container:SplashScreen.xcodeproj">
+               BlueprintIdentifier = "DF1DF32E2419D6E700BFE171"
+               BuildableName = "libRNSplashScreen.a"
+               BlueprintName = "RNSplashScreen"
+               ReferencedContainer = "container:RNSplashScreen.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D7682751D8E76B80014119E"
-            BuildableName = "libSplashScreen.a"
-            BlueprintName = "SplashScreen"
-            ReferencedContainer = "container:SplashScreen.xcodeproj">
+            BlueprintIdentifier = "DF1DF32E2419D6E700BFE171"
+            BuildableName = "libRNSplashScreen.a"
+            BlueprintName = "RNSplashScreen"
+            ReferencedContainer = "container:RNSplashScreen.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D7682751D8E76B80014119E"
-            BuildableName = "libSplashScreen.a"
-            BlueprintName = "SplashScreen"
-            ReferencedContainer = "container:SplashScreen.xcodeproj">
+            BlueprintIdentifier = "DF1DF32E2419D6E700BFE171"
+            BuildableName = "libRNSplashScreen.a"
+            BlueprintName = "RNSplashScreen"
+            ReferencedContainer = "container:RNSplashScreen.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

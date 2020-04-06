@@ -6,8 +6,11 @@
  * GitHub:https://github.com/crazycodeboy
  * Email:crazycodeboy@gmail.com
  */
-#import <React/RCTBridgeModule.h>
+
 #import <UIKit/UIKit.h>
+#import <React/RCTBridgeModule.h>
+
+// '+' means static methods, '-' means non-static methods
 
 @interface RNSplashScreen : NSObject<RCTBridgeModule>
 + (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView;
