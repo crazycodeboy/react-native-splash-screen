@@ -1,33 +1,54 @@
-apply plugin: 'com.android.library'
-
-def DEFAULT_COMPILE_SDK_VERSION             = 26
-def DEFAULT_BUILD_TOOLS_VERSION             = "26.0.2"
-def DEFAULT_TARGET_SDK_VERSION              = 26
-def DEFAULT_SUPPORT_LIB_VERSION             = "26.1.0"
-
-android {
-    compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
-    buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
-
-    defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion rootProject.hasProperty('targetSdkVersion') ? rootProject.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
-        versionCode 1
-        versionName "1.0"
+buildscript {
+    ext.safeExtGet = {prop, fallback ->
+        rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    if (project == rootProject) {
+        repositories {
+            google()
+            jcenter()
+            maven {
+                url "https://jitpack.io"
+            }
+        }
+
+        dependencies {
+            //noinspection GradleDependency
+            classpath("com.android.tools.build:gradle:${safeExtGet('gradlePluginVersion', '3.4.1')}")
         }
     }
 }
 
-dependencies {
-    def supportLibVersion = rootProject.hasProperty('supportLibVersion') ? rootProject.supportLibVersion : DEFAULT_SUPPORT_LIB_VERSION
+apply plugin: 'com.android.library'
 
+android {
+    compileSdkVersion safeExtGet('compileSdkVersion', 28)
+    //noinspection GradleDependency
+    buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
+
+    defaultConfig {
+        minSdkVersion safeExtGet('minSdkVersion', 16)
+        //noinspection OldTargetApi
+        targetSdkVersion safeExtGet('targetSdkVersion', 28)
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    mavenLocal()
+    google()
+    jcenter()
+    maven {
+        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+        url "$rootDir/../node_modules/react-native/android"
+    }
+}
+
+dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.facebook.react:react-native:+" // From node_modules
+    implementation "androidx.appcompat:appcompat:1.0.0"
+    //noinspection GradleDynamicVersion
+    implementation "com.facebook.react:react-native:${safeExtGet('reactnativeVersion', '+')}"
 }
