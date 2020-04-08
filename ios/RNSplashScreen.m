@@ -51,7 +51,11 @@ RCT_EXPORT_MODULE(SplashScreen)
         });
     } else {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [loadingView removeFromSuperview];
+            [UIView animateWithDuration:0.4
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{loadingView.alpha = 0.0;}
+                             completion:^(BOOL finished){ [loadingView removeFromSuperview]; }];
         });
     }
 }
