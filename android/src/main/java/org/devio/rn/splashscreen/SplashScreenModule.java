@@ -27,7 +27,7 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
      */
     @ReactMethod
     public void show() {
-        SplashScreen.show(getCurrentActivity());
+        SplashScreen.show(getCurrentActivity(), true);
     }
 
     /**
