@@ -29,6 +29,11 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
     public void show() {
         SplashScreen.show(getCurrentActivity());
     }
+    
+    @ReactMethod
+    public void showFullScreen() {
+        SplashScreen.showFullScreen(getCurrentActivity());
+    }
 
     /**
      * 关闭启动屏
