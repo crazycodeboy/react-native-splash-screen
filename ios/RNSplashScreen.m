@@ -38,6 +38,12 @@ RCT_EXPORT_MODULE(SplashScreen)
         CGRect frame = rootView.frame;
         frame.origin = CGPointMake(0, 0);
         loadingView.frame = frame;
+    } else {
+        [loadingView removeFromSuperview];
+        loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
+        CGRect frame = rootView.frame;
+        frame.origin = CGPointMake(0, 0);
+        loadingView.frame = frame;
     }
     waiting = false;
     
@@ -69,5 +75,13 @@ RCT_EXPORT_METHOD(hide) {
 RCT_EXPORT_METHOD(show) {
     [RNSplashScreen show];
 }
-
+RCT_EXPORT_METHOD(show:(BOOL)newLayout) {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    UIView *topView = window.rootViewController.view;
+    NSString* screen = @"LaunchScreen";
+    if (!newLayout){
+        screen = @"LaunchScreen_old";
+    }
+    [RNSplashScreen showSplash:screen inRootView:topView];
+}
 @end
