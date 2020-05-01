@@ -29,6 +29,7 @@ NSInteger const RNSplashScreenOverlayTag = 39293;
   if (launchView != nil) {
     launchView.tag = RNSplashScreenOverlayTag;
     [UIApplication.sharedApplication.keyWindow.subviews.lastObject addSubview:launchView];
+    showing = true;
   }
 }
 
