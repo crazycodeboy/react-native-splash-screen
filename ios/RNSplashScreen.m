@@ -24,17 +24,12 @@ NSInteger const RNSplashScreenOverlayTag = 39293;
 + (void)show {
   if (showing) return;
 
-  NSString* launchImageName = [RNSplashScreen launchImageNameForOrientation:UIDeviceOrientationPortrait];
-  UIImage *image = [UIImage imageNamed:launchImageName];
-  // currently, this depends on having all required launch screen images
-  if (image == nil) return;
-
-  showing = true;
-  UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-  // Give some decent tagvalue or keep a reference of imageView in self
-  imageView.tag = RNSplashScreenOverlayTag;
-  imageView.contentMode = UIViewContentModeScaleAspectFill;
-  [UIApplication.sharedApplication.keyWindow.subviews.lastObject addSubview:imageView];
+  UIViewController *launchScreen = [[UIStoryboard storyboardWithName: @"LaunchScreen" bundle: [NSBundle mainBundle]] instantiateInitialViewController];
+  UIView *launchView = [launchScreen view];
+  if (launchView != nil) {
+    launchView.tag = RNSplashScreenOverlayTag;
+    [UIApplication.sharedApplication.keyWindow.subviews.lastObject addSubview:launchView];
+  }
 }
 
 + (void)hide {
