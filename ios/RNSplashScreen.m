@@ -13,6 +13,8 @@
 static bool waiting = true;
 static bool addedJsLoadErrorObserver = false;
 static UIView* loadingView = nil;
+static UIView* parentView = nil;
+static NSString* splash = nil;
 
 @implementation RNSplashScreen
 - (dispatch_queue_t)methodQueue{
@@ -21,27 +23,21 @@ static UIView* loadingView = nil;
 RCT_EXPORT_MODULE(SplashScreen)
 
 + (void)show {
-    if (!addedJsLoadErrorObserver) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jsLoadError:) name:RCTJavaScriptDidFailToLoadNotification object:nil];
-        addedJsLoadErrorObserver = true;
-    }
-
-    while (waiting) {
-        NSDate* later = [NSDate dateWithTimeIntervalSinceNow:0.1];
-        [[NSRunLoop mainRunLoop] runUntilDate:later];
-    }
-}
-
-+ (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
     if (!loadingView) {
-        loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
-        CGRect frame = rootView.frame;
+        loadingView = [[[NSBundle mainBundle] loadNibNamed:splash owner:self options:nil] objectAtIndex:0];
+        CGRect frame = parentView.frame;
         frame.origin = CGPointMake(0, 0);
         loadingView.frame = frame;
     }
     waiting = false;
-    
-    [rootView addSubview:loadingView];
+
+    [parentView addSubview:loadingView];
+}
+
++ (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
+    parentView = rootView;
+    splash = splashScreen;
+    [RNSplashScreen show];
 }
 
 + (void)hide {
