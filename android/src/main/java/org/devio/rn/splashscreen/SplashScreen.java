@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Build;
 import android.view.View;
 import android.graphics.Color;
+import android.util.Log;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.ReadableMap;
@@ -87,7 +88,11 @@ public class SplashScreen {
                     }
 
                     if (!_activity.isFinishing() && !isDestroyed) {
-                        mSplashDialog.dismiss();
+                        try {
+                            mSplashDialog.dismiss();
+                        } catch (Exception e) {
+                            Log.d("RNSplashScreen error on dismiss", e.getMessage());
+                        }
                     }
                     mSplashDialog = null;
                 }
