@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="layout" name="launch_screen">
-        @layout/launch_screen
-    </item>
+    <item type="layout" name="launch_screen">@layout/launch_screen</item>
+    <item type="layout" name="launch_screen_1">@layout/launch_screen_1</item>
+    <item type="layout" name="launch_screen_2">@layout/launch_screen_2</item>
+    <item type="layout" name="launch_screen_3">@layout/launch_screen_3</item>
+    <item type="layout" name="launch_screen_4">@layout/launch_screen_4</item>
+    <item type="layout" name="launch_screen_5">@layout/launch_screen_5</item>
+    <item type="layout" name="launch_screen_6">@layout/launch_screen_6</item>
 </resources>
