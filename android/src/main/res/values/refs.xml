@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="layout" name="launch_screen">@layout/launch_screen</item>
-    <item type="layout" name="launch_screen_1">@layout/launch_screen_1</item>
-    <item type="layout" name="launch_screen_2">@layout/launch_screen_2</item>
-    <item type="layout" name="launch_screen_3">@layout/launch_screen_3</item>
-    <item type="layout" name="launch_screen_4">@layout/launch_screen_4</item>
-    <item type="layout" name="launch_screen_5">@layout/launch_screen_5</item>
-    <item type="layout" name="launch_screen_6">@layout/launch_screen_6</item>
+  <item name="launch_screen" type="layout">@layout/launch_screen</item>
+  <item name="launch_screen_1" type="layout">@layout/launch_screen_1</item>
+  <item name="launch_screen_2" type="layout">@layout/launch_screen_2</item>
+  <item name="launch_screen_3" type="layout">@layout/launch_screen_3</item>
+  <item name="launch_screen_4" type="layout">@layout/launch_screen_4</item>
+  <item name="launch_screen_5" type="layout">@layout/launch_screen_5</item>
+  <item name="launch_screen_6" type="layout">@layout/launch_screen_6</item>
+
+  <item name="launch_screen_7" type="layout">@layout/launch_screen_7</item>
+  <item name="launch_screen_8" type="layout">@layout/launch_screen_8</item>
+  <item name="launch_screen_9" type="layout">@layout/launch_screen_9</item>
+  <item name="launch_screen_10" type="layout">@layout/launch_screen_10</item>
+  <item name="launch_screen_11" type="layout">@layout/launch_screen_11</item>
+  <item name="launch_screen_12" type="layout">@layout/launch_screen_12</item>
+  <item name="launch_screen_13" type="layout">@layout/launch_screen_13</item>
+  <item name="launch_screen_14" type="layout">@layout/launch_screen_14</item>
 </resources>
