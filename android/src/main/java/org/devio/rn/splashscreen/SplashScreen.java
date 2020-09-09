@@ -28,6 +28,14 @@ public class SplashScreen {
     R.layout.launch_screen_4,
     R.layout.launch_screen_5,
     R.layout.launch_screen_6,
+    R.layout.launch_screen_7,
+    R.layout.launch_screen_8,
+    R.layout.launch_screen_9,
+    R.layout.launch_screen_10,
+    R.layout.launch_screen_11,
+    R.layout.launch_screen_12,
+    R.layout.launch_screen_13,
+    R.layout.launch_screen_14
   };
 
 
@@ -63,7 +71,7 @@ public class SplashScreen {
   public static void setValue(final Activity activity) {
     SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPref.edit();
-    editor.putInt(SPLASH_INDEX_KEY, (getValue(activity) + 1) % 7);
+    editor.putInt(SPLASH_INDEX_KEY, (getValue(activity) + 1) % 15);
     editor.apply();
   }
 
