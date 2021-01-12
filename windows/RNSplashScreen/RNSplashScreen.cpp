@@ -57,6 +57,8 @@ void winrt::RNSplashScreen::RNSplashScreen::Show() noexcept
     if (control != nullptr)
     {
         control.Opacity(1);
+        control.IsHitTestVisible(true);
+        control.IsEnabled(true);
     }
 }
 
@@ -66,5 +68,7 @@ void winrt::RNSplashScreen::RNSplashScreen::Hide() noexcept
     if (control != nullptr)
     {
         control.Opacity(0);
+        control.IsHitTestVisible(false);
+        control.IsEnabled(false);
     }
 }
