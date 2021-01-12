@@ -1,7 +1,7 @@
 {
   "name": "react-native-splash-screen",
   "version": "3.2.0",
-  "description": "A splash screen for react-native, hide when application loaded ,it works on iOS and Android.",
+  "description": "A splash screen for react-native, hide when application loaded ,it works on iOS, Android and Windows.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,5 +30,9 @@
   "peerDependencies": {
     "react-native": ">=0.57.0"
   },
-  "homepage": "https://github.com/crazycodeboy/react-native-splash-screen#readme"
+  "homepage": "https://github.com/crazycodeboy/react-native-splash-screen#readme",
+  "devDependencies": {
+    "react-native": "^0.63.4",
+    "react-native-windows": "^0.63.14"
+  }
 }
