@@ -27,6 +27,8 @@
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "pixelmatch": "5.2.1",
+    "pngjs": "6.0.0",
     "react-test-renderer": "16.13.1",
     "selenium-appium": "0.0.15",
     "selenium-webdriver": "4.0.0-alpha.7"
