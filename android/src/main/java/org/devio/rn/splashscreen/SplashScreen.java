@@ -3,6 +3,7 @@ package org.devio.rn.splashscreen;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
+import android.view.View;
 
 import java.lang.ref.WeakReference;
 
@@ -21,7 +22,7 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final int themeResId) {
+    public static void show(final Activity activity, final int themeResId, final boolean fullScreen) {
         if (activity == null) return;
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
@@ -29,9 +30,20 @@ public class SplashScreen {
             public void run() {
                 if (!activity.isFinishing()) {
                     mSplashDialog = new Dialog(activity, themeResId);
+
+                    if(fullScreen) {
+                        // Hides the status and navigation bar until the user wants to interact with them.
+                        View decorView = mSplashDialog.getWindow().getDecorView();
+                        int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                        decorView.setSystemUiVisibility(uiOptions);
+                    }
+
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
-
+                    
                     if (!mSplashDialog.isShowing()) {
                         mSplashDialog.show();
                     }
@@ -46,7 +58,7 @@ public class SplashScreen {
     public static void show(final Activity activity, final boolean fullScreen) {
         int resourceId = fullScreen ? R.style.SplashScreen_Fullscreen : R.style.SplashScreen_SplashTheme;
 
-        show(activity, resourceId);
+        show(activity, resourceId, fullScreen);
     }
 
     /**
