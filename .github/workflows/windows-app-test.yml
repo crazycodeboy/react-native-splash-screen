@@ -1,0 +1,39 @@
+name: Windows CI
+on: [pull_request]
+
+jobs:
+  run-windows-tests:
+    name: Build & run tests
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout Code
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.18.3'
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+      with:
+        vs-version: 16.8
+
+    - name: Install example modules
+      run: |
+        cd examples
+        yarn --pure-lockfile
+    - name: Build release
+      run: |
+        cd examples
+        npx react-native run-windows --release --no-packager --no-launch --logging
+    - name: Start Appium server
+      shell: powershell
+      run: |
+        cd examples
+        Start-Process PowerShell -ArgumentList "yarn appium"
+    - name: Run tests
+      run: |
+        cd examples
+        yarn test:windows

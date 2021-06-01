@@ -1,0 +1,8 @@
+namespace RNSplashScreen
+{
+    [default_interface]
+    runtimeclass RNSplashScreenControl : Windows.UI.Xaml.Controls.UserControl
+    {
+        RNSplashScreenControl();
+    }
+}

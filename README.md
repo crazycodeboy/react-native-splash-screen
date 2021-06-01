@@ -9,7 +9,7 @@
 [ ![原理 解析](https://img.shields.io/badge/原理-解析-brightgreen.svg)](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)
 [ ![Flutter](https://img.shields.io/badge/Flutter-brightgreen.svg)](https://github.com/crazycodeboy/flutter_splash_screen)
 
-A splash screen API for react-native which can programatically hide and show the splash screen. Works on iOS and Android.
+A splash screen API for react-native which can programatically hide and show the splash screen. Works on iOS, Android and Windows.
 
 ## Content
 
@@ -112,6 +112,20 @@ public class MainApplication extends Application implements ReactApplication {
    `$(SRCROOT)/../node_modules/react-native-splash-screen/ios`
 
 
+**Windows:**
+
+##### Automatic install with autolinking on RNW
+RNSplashScreen supports autolinking. Just call: `yarn add react-native-splash-screen`
+
+##### Manual installation on RNW
+1. `yarn add react-native-splash-screen`
+2. Open your solution in Visual Studio 2019 (eg. `windows\yourapp.sln`)
+3. Right-click Solution icon in Solution Explorer > Add > Existing Project...
+4. Add `node_modules\[module name here]\windows\RNSplashScreen\RNSplashScreen.vcxproj`
+5. Right-click main application project > Add > Reference...
+6. Select `RNSplashScreen` in Solution Projects
+7. In app `pch.h` add `#include "winrt/RNSplashScreen.h"`
+8. In `App.cpp` add `PackageProviders().Append(winrt::RNSplashScreen::ReactPackageProvider());` before `InitializeComponent();`
 
 ### Third step(Plugin Configuration):
 
@@ -163,6 +177,43 @@ Update `AppDelegate.m` with the following additions:
 
 @end
 
+```
+
+**Windows:**
+
+On Windows, `react-native-splash-screen` will use an element in the visual tree to show the splash screen, a XAML `RNSplashScreen::RNSplashScreenControl`.
+
+To add this element, follow the following steps:
+
+1. In the application's `pch.h` file, add `#include "winrt/RNSplashScreen.h"` if you haven't already.
+
+2. In the application's main XAML file, add a `RNSplashScreen::RNSplashScreenControl` element right beneath the `react:ReactRootView` element.
+
+As an example, in `windows/myapp/MainPage.xaml` from the `react-native-windows` app template this can be done by adding a XAML `Grid` with a `RNSplashScreen::RNSplashScreenControl` alongside the `ReactRootView`. Change `windows/myapp/MainPage.xaml` from:
+```xaml
+<Page
+  ...
+  >
+  <react:ReactRootView
+    x:Name="ReactRootView"
+    ...
+  />
+</Page>
+```
+to
+```xaml
+<Page
+  ...
+  xmlns:rnsplashscreen="using:RNSplashScreen"
+  >
+  <Grid>
+    <react:ReactRootView
+      x:Name="ReactRootView"
+      ...
+    />
+    <rnsplashscreen:RNSplashScreenControl/>
+  </Grid>
+</Page>
 ```
 
 ## Getting started  
@@ -256,6 +307,14 @@ Customize your splash screen via `LaunchScreen.storyboard` or `LaunchScreen.xib`
 
 - [via LaunchScreen.storyboard Tutorial](https://github.com/crazycodeboy/react-native-splash-screen/blob/master/add-LaunchScreen-tutorial-for-ios.md)
 
+
+### Windows
+
+`react-native-splash-screen` will use the splash screen image and background color defined in the application's `Package.appxmanifest` file.
+
+Since UWP applications already have a splash screen, this makes it so that the splash screen is extended into the `react-native-windows` load process.
+
+To configure the UWP splash screen, open `windows/myapp/Package.appxmanifest` in Visual Studio, open the `Visual Assets` tab and the `Splash Screen` horizontal tab. Add a Splash Screen image and define a background color.
 
 ## Usage
 
