@@ -53,22 +53,30 @@ void winrt::RNSplashScreen::RNSplashScreen::Init(ReactContext const& context) no
 
 void winrt::RNSplashScreen::RNSplashScreen::Show() noexcept
 {
-    winrt::impl::com_ref<winrt::RNSplashScreen::RNSplashScreenControl> control = getSplashScreenControl();
-    if (control != nullptr)
-    {
-        control.Opacity(1);
-        control.IsHitTestVisible(true);
-        control.IsEnabled(true);
-    }
+    reactContext.UIDispatcher().Post([=]()
+        {
+            winrt::impl::com_ref<winrt::RNSplashScreen::RNSplashScreenControl> control = getSplashScreenControl();
+            if (control != nullptr)
+            {
+                control.Opacity(1);
+                control.IsHitTestVisible(true);
+                control.IsEnabled(true);
+            }
+        }
+    );
 }
 
 void winrt::RNSplashScreen::RNSplashScreen::Hide() noexcept
 {
-    winrt::impl::com_ref<winrt::RNSplashScreen::RNSplashScreenControl> control = getSplashScreenControl();
-    if (control != nullptr)
-    {
-        control.Opacity(0);
-        control.IsHitTestVisible(false);
-        control.IsEnabled(false);
-    }
+    reactContext.UIDispatcher().Post([=]()
+        {
+            winrt::impl::com_ref<winrt::RNSplashScreen::RNSplashScreenControl> control = getSplashScreenControl();
+            if (control != nullptr)
+            {
+                control.Opacity(0);
+                control.IsHitTestVisible(false);
+                control.IsEnabled(false);
+            }
+        }
+    );
 }
