@@ -3,4 +3,10 @@
     <item type="layout" name="launch_screen">
         @layout/launch_screen
     </item>
+    <item type="raw" name="splash_video">
+        @raw/splash_video
+    </item>
+    <item type="id" name="simpleVideoView">
+        @id/simpleVideoView
+    </item>
 </resources>
