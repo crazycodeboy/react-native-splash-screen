@@ -1,6 +1,6 @@
 {
   "name": "react-native-splash-screen",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "A splash screen for react-native, hide when application loaded ,it works on iOS and Android.",
   "main": "index.js",
   "scripts": {
