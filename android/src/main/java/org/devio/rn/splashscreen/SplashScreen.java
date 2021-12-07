@@ -3,16 +3,16 @@ package org.devio.rn.splashscreen;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
+import android.widget.VideoView;
+import android.net.Uri;
+import android.util.DisplayMetrics;
 
 import java.lang.ref.WeakReference;
+import java.net.URI;
 
 /**
- * SplashScreen
- * 启动屏
- * from：http://www.devio.org
- * Author:CrazyCodeBoy
- * GitHub:https://github.com/crazycodeboy
- * Email:crazycodeboy@gmail.com
+ * SplashScreen 启动屏 from：http://www.devio.org Author:CrazyCodeBoy
+ * GitHub:https://github.com/crazycodeboy Email:crazycodeboy@gmail.com
  */
 public class SplashScreen {
     private static Dialog mSplashDialog;
@@ -21,8 +21,9 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final int themeResId) {
-        if (activity == null) return;
+    public static void show(final Activity activity, final int themeResId, final boolean isvideoSplash) {
+        if (activity == null)
+            return;
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -30,10 +31,15 @@ public class SplashScreen {
                 if (!activity.isFinishing()) {
                     mSplashDialog = new Dialog(activity, themeResId);
                     mSplashDialog.setContentView(R.layout.launch_screen);
-                    mSplashDialog.setCancelable(false);
-
                     if (!mSplashDialog.isShowing()) {
                         mSplashDialog.show();
+                        if(isvideoSplash){
+                            String path = "android.resource://" + activity.getPackageName() + "/" + R.raw.splash_video;
+                            VideoView mVideoView = (VideoView) mSplashDialog.findViewById(R.id.simpleVideoView);
+                            mVideoView.setVideoURI(Uri.parse(path));
+                            mVideoView.start();
+                            mSplashDialog.setCancelable(false);
+                        }
                     }
                 }
             }
@@ -43,17 +49,17 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final boolean fullScreen) {
+    public static void show(final Activity activity, final boolean fullScreen, final boolean isvideoSplash) {
         int resourceId = fullScreen ? R.style.SplashScreen_Fullscreen : R.style.SplashScreen_SplashTheme;
 
-        show(activity, resourceId);
+        show(activity, resourceId, isvideoSplash);
     }
 
     /**
      * 打开启动屏
      */
     public static void show(final Activity activity) {
-        show(activity, false);
+        show(activity, false, false);
     }
 
     /**
@@ -67,7 +73,8 @@ public class SplashScreen {
             activity = mActivity.get();
         }
 
-        if (activity == null) return;
+        if (activity == null)
+            return;
 
         final Activity _activity = activity;
 
