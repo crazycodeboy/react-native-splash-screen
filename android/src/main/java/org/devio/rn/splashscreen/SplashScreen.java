@@ -16,9 +16,16 @@ import java.lang.ref.WeakReference;
  * Email:crazycodeboy@gmail.com
  */
 public class SplashScreen {
-    private static Dialog mSplashDialog;
-    private static WeakReference<Activity> mActivity;
+    protected static Dialog mSplashDialog;
+    protected static WeakReference<Activity> mActivity;
 
+    public static Dialog getSplashDialog() {
+        return mSplashDialog;
+    }
+
+    public static WeakReference<Activity> getActivity() {
+        return mActivity;
+    }
     /**
      * 打开启动屏
      */
