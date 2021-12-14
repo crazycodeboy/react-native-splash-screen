@@ -3,6 +3,7 @@ package org.devio.rn.splashscreen;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.module.annotations.ReactModule;
 
 /**
  * SplashScreen
@@ -12,14 +13,18 @@ import com.facebook.react.bridge.ReactMethod;
  * GitHub:https://github.com/crazycodeboy
  * Email:crazycodeboy@gmail.com
  */
-public class SplashScreenModule extends ReactContextBaseJavaModule{
+
+@ReactModule(name = SplashScreenModule.NAME)
+public class SplashScreenModule extends ReactContextBaseJavaModule {
+    public static final String NAME = "SplashScreen";
+
     public SplashScreenModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
 
     @Override
     public String getName() {
-        return "SplashScreen";
+        return NAME;
     }
 
     /**
