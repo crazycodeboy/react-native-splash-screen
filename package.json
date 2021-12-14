@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/crazycodeboy/react-native-splash-screen.git"
   },
+  "types": "index.d.ts",
   "keywords": [
     "react-native",
     "react-native-component",
