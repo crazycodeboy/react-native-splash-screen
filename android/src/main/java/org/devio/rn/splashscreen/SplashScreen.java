@@ -60,6 +60,13 @@ public class SplashScreen {
     }
 
     /**
+     * full page
+     */
+    public static void showFullScreen(final Activity activity) {
+        show(activity, true);
+    }
+    
+    /**
      * 关闭启动屏
      */
     public static void hide(Activity activity) {
