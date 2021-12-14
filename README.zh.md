@@ -187,6 +187,7 @@ public class MainActivity extends ReactActivity {
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--设置透明背景-->
+        <!--当你期望在安卓8.0.0上运行时，设置了此项为true，请检查AndroidManifest.xml文件，当android:screenOrientation="portrait"时会发生崩溃          -->
         + <item name="android:windowIsTranslucent">true</item>
     </style>
 </resources>
