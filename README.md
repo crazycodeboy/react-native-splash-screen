@@ -245,8 +245,9 @@ Create a style definition for this in `android/app/src/main/res/values/styles.xm
 
 Change your `show` method to include your custom style:
 ```java
-SplashScreen.show(this, R.style.SplashScreenTheme);
+SplashScreen.show(this, R.style.SplashScreenTheme, true);
 ```
+You can use false instead of true, if you would not like to use full screen mode
 
 ### iOS    
 
