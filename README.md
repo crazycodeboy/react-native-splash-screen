@@ -137,6 +137,31 @@ public class MainActivity extends ReactActivity {
 }
 ```
 
+**Android: (For RN >=0.68.0)**
+
+Update the `MainActivity.java` to use `react-native-splash-screen` via the following changes:
+
+```java
+import com.facebook.react.ReactActivity;
+import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.ReactRootView;
+
+// react-native-splash-screen >= 0.3.1
+import org.devio.rn.splashscreen.SplashScreen; // here
+// react-native-splash-screen < 0.3.1
+import com.cboy.rn.splashscreen.SplashScreen; // here
+
+public class MainActivity extends ReactActivity {
+  // ...other code
+  @Override
+  protected ReactActivityDelegate createReactActivityDelegate() {
+    SplashScreen.show(this, R.style.SplashScreenTheme, true); // here
+    return new MainActivityDelegate(this, getMainComponentName());
+  }
+  // ...other code
+}
+```
+
 **iOS:**
 
 Update `AppDelegate.m` with the following additions:
