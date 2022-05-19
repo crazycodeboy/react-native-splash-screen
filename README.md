@@ -125,6 +125,7 @@ public class MainActivity extends ReactActivity {
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.show(this);  // here
+        // SplashScreen.showVideo(this);  // alternative
         super.onCreate(savedInstanceState);
     }
     // ...other code
@@ -150,6 +151,7 @@ Update `AppDelegate.m` with the following additions:
     // ...other code
 
     [RNSplashScreen show];  // here
+    // [RNSplashScreen showVideo];  // alternative
     // or
     //[RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
     return YES;
@@ -166,6 +168,8 @@ Import `react-native-splash-screen` in your JS file.
 `import SplashScreen from 'react-native-splash-screen'`    
 
 ### Android:
+
+#### Image Splashscreen
 
 Create a file called `launch_screen.xml` in `app/src/main/res/layout` (create the `layout`-folder if it doesn't exist). The contents of the file should be the following:
 
@@ -196,6 +200,9 @@ Add a color called `primary_dark` in `app/src/main/res/values/colors.xml`
 </resources>
 ```
 
+#### Video Splashscreen
+
+Customize your launch screen by creating a `splashscreen`-video-file and placing it in `raw`-folder.
 
 **Optional steps：**
 
@@ -244,9 +251,15 @@ SplashScreen.show(this, R.style.SplashScreenTheme);
 
 ### iOS    
 
+#### Image Splashscreen
+
 Customize your splash screen via `LaunchImage` or `LaunchScreen.xib`,
 
 **Learn more to see [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
+
+#### Video Splashscreen
+
+Add `splashscreen.mp4` to resources.
 
 ## Usage
 
@@ -261,6 +274,7 @@ export default class WelcomePage extends Component {
     	// do stuff while splash screen is shown
         // After having done stuff (such as async tasks) hide the splash screen
         SplashScreen.hide();
+        // SplashScreen.hideVideo(); // alternative
     }
 }
 ```

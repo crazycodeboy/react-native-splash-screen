@@ -3,4 +3,7 @@
     <item type="layout" name="launch_screen">
         @layout/launch_screen
     </item>
+    <item type="raw" name="splashscreen">
+        @raw/splashscreen
+    </item>
 </resources>

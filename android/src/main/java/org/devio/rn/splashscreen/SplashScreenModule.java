@@ -57,6 +57,16 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
     }
 
     @ReactMethod
+    public void showVideo() {
+        SplashScreen.showVideo(getCurrentActivity());
+    }
+
+    @ReactMethod
+    public void hideVideo() {
+        SplashScreen.hideVideo(getCurrentActivity());
+    }
+
+    @ReactMethod
     public void setBackgroundColor(String color) {
         SplashScreen.setBackgroundColor(getCurrentActivity(), color);
     }

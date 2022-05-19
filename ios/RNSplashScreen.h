@@ -12,4 +12,6 @@
 @interface RNSplashScreen : NSObject<RCTBridgeModule>
 + (void)show;
 + (void)hide;
++ (void)showVideo;
++ (void)hideVideo;
 @end

@@ -9,8 +9,10 @@
 
 #import "RNSplashScreen.h"
 #import <React/RCTBridge.h>
+#import <AVFoundation/AVFoundation.h>
 
 static bool showing = false;
+static bool showingVideo = false;
 
 @implementation RNSplashScreen
 - (dispatch_queue_t)methodQueue{
@@ -20,9 +22,53 @@ static bool showing = false;
 RCT_EXPORT_MODULE(SplashScreen)
 
 NSInteger const RNSplashScreenOverlayTag = 39293;
+NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
+
++ (void)showVideo {
+  if (showingVideo || showing) return;
+
+  NSString *videoPath=[[NSBundle mainBundle] pathForResource:@"splashscreen" ofType:@"mp4"];
+  if (videoPath == nil) return;
+  showingVideo = true;
+
+  UIView *rootView = UIApplication.sharedApplication.keyWindow.subviews.lastObject;
+
+  NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
+  AVPlayer *player = [AVPlayer playerWithURL:videoURL];
+  playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+
+  AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+  playerLayer.frame = rootView.bounds;
+  [playerLayer setName:RNSplashScreenOverlayName];
+
+  [rootView.layer addSublayer:playerLayer];
+  [player play];
+
+  [[NSNotificationCenter defaultCenter] addObserver: self
+                                           selector: @selector(hideVideo:)
+                                               name: AVPlayerItemDidPlayToEndTimeNotification
+                                             object: [player currentItem]];
+}
+
++ (void) hideVideo {
+  UIView *rootView = UIApplication.sharedApplication.keyWindow.subviews.lastObject;
+
+  for (CALayer *layer in rootView.layer.sublayers) {
+    if ([[layer name] isEqualToString:RNSplashScreenOverlayName]) {
+      [layer removeFromSuperlayer];
+      showingVideo = false;
+      return;
+    }
+  }
+  showingVideo = false;
+}
+
++ (void) hideVideo:(AVPlayerItem*)playerItem {
+  [self hideVideo];
+}
 
 + (void)show {
-  if (showing) return;
+  if (showingVideo || showing) return;
 
   UIViewController *launchScreen = [[UIStoryboard storyboardWithName: @"LaunchScreen" bundle: [NSBundle mainBundle]] instantiateInitialViewController];
   UIView *launchView = [launchScreen view];
@@ -68,11 +114,19 @@ NSInteger const RNSplashScreenOverlayTag = 39293;
 }
 
 RCT_EXPORT_METHOD(hide) {
-    [RNSplashScreen hide];
+  [RNSplashScreen hide];
 }
 
 RCT_EXPORT_METHOD(show) {
-    [RNSplashScreen show];
+  [RNSplashScreen show];
+}
+
+RCT_EXPORT_METHOD(hideVideo) {
+  [RNSplashScreen hideVideo];
+}
+
+RCT_EXPORT_METHOD(showVideo) {
+  [RNSplashScreen showVideo];
 }
 
 @end
