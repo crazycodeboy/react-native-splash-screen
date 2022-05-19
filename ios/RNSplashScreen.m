@@ -13,6 +13,8 @@
 
 static bool showing = false;
 static bool showingVideo = false;
+static AVPlayer *lastPlayer = nil;
+static id videoPauseObserver = nil;
 
 @implementation RNSplashScreen
 - (dispatch_queue_t)methodQueue{
@@ -25,6 +27,10 @@ NSInteger const RNSplashScreenOverlayTag = 39293;
 NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
 
 + (void)showVideo {
+  [RNSplashScreen showVideo:(NSDictionary *)@{}];
+}
+
++ (void)showVideo:(NSDictionary *)config {
   if (showingVideo || showing) return;
 
   NSString *videoPath=[[NSBundle mainBundle] pathForResource:@"splashscreen" ofType:@"mp4"];
@@ -35,10 +41,25 @@ NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
 
   NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
   AVPlayer *player = [AVPlayer playerWithURL:videoURL];
-  playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+  lastPlayer = player;
+  __weak AVPlayer *_player = player;
+
+  NSNumber *pauseAfterMs = config[@"pauseAfterMs"];
+  if (pauseAfterMs != nil) {
+      videoPauseObserver = [player addBoundaryTimeObserverForTimes: @[[NSValue valueWithCMTime:CMTimeMake([pauseAfterMs intValue], 1000)]]
+                                                    queue:NULL // main queue
+                                               usingBlock:^() {
+          if (_player == nil) {
+              return;
+          }
+          _player.rate = 0;
+          [_player pause];
+      }];
+  }
 
   AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
   playerLayer.frame = rootView.bounds;
+  playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
   [playerLayer setName:RNSplashScreenOverlayName];
 
   [rootView.layer addSublayer:playerLayer];
@@ -51,7 +72,9 @@ NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
 }
 
 + (void) hideVideo {
+  if (showing) return;
   UIView *rootView = UIApplication.sharedApplication.keyWindow.subviews.lastObject;
+  [RNSplashScreen removeVideoPauseOption];
 
   for (CALayer *layer in rootView.layer.sublayers) {
     if ([[layer name] isEqualToString:RNSplashScreenOverlayName]) {
@@ -61,10 +84,28 @@ NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
     }
   }
   showingVideo = false;
+  lastPlayer = nil;
 }
 
 + (void) hideVideo:(AVPlayerItem*)playerItem {
   [self hideVideo];
+}
+
++ (void)resumeVideo {
+  if (showing) return;
+  if (lastPlayer == nil) return;
+  [RNSplashScreen removeVideoPauseOption];
+
+  lastPlayer.rate = 1;
+  [lastPlayer play];
+}
+
++ (void)removeVideoPauseOption {
+  if (showing) return;
+  if (videoPauseObserver == nil || lastPlayer == nil) return;
+
+  [lastPlayer removeTimeObserver:videoPauseObserver];
+  videoPauseObserver = nil;
 }
 
 + (void)show {
@@ -80,6 +121,7 @@ NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
 }
 
 + (void)hide {
+  if (showingVideo) return;
   // let's try to hide, even if showing == false, ...just in case
 
   UIImageView *imageView = (UIImageView *)[UIApplication.sharedApplication.keyWindow.subviews.lastObject viewWithTag:RNSplashScreenOverlayTag];
@@ -127,6 +169,14 @@ RCT_EXPORT_METHOD(hideVideo) {
 
 RCT_EXPORT_METHOD(showVideo) {
   [RNSplashScreen showVideo];
+}
+
+RCT_EXPORT_METHOD(resumeVideo) {
+  [RNSplashScreen resumeVideo];
+}
+
+RCT_EXPORT_METHOD(removeVideoPauseOption) {
+  [RNSplashScreen removeVideoPauseOption];
 }
 
 @end

@@ -13,5 +13,8 @@
 + (void)show;
 + (void)hide;
 + (void)showVideo;
++ (void)showVideo:(NSDictionary *)config;
 + (void)hideVideo;
++ (void)resumeVideo;
++ (void)removeVideoPauseOption;
 @end

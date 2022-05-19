@@ -32,8 +32,14 @@ public class SplashScreen {
     private static WeakReference<Activity> mActivity;
     private static boolean isVideoActive = false;
     private static boolean isImageActive = false;
+    private static VideoView lastVideoView = null;
+    private static Runnable videoPauseRunnable = null;
 
-    public static void showVideo(Activity activity) {
+    public static void showVideo(final Activity activity) {
+        showVideo(activity, Arguments.createMap());
+    }
+
+    public static void showVideo(final Activity activity, final ReadableMap options) {
         if (activity == null) return;
         if (mSplashDialog != null) return;
         if (isImageActive || isVideoActive) return;
@@ -81,10 +87,24 @@ public class SplashScreen {
                     videoView.setVideoPath(videoPath);
                     videoView.start();
 
+                    lastVideoView = videoView;
+
+                    int pauseAfterMs = options.hasKey("pauseAfterMs") ? options.getInt("pauseAfterMs") : 0;
+                    if (pauseAfterMs > 0) {
+                        videoPauseRunnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                if (lastVideoView != null) {
+                                    lastVideoView.pause();
+                                }
+                            }
+                        };
+                        videoView.postDelayed(videoPauseRunnable, pauseAfterMs);
+                    }
+
                     if (!mSplashDialog.isShowing()) {
                         mSplashDialog.show();
                     }
-
 
                     videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
@@ -97,8 +117,27 @@ public class SplashScreen {
         });
     }
 
+    public static void removeVideoPauseOption(Activity activity) {
+        if (isImageActive) return;
+        if (lastVideoView == null || videoPauseRunnable == null) return;
+
+        lastVideoView.removeCallbacks(videoPauseRunnable);
+        videoPauseRunnable = null;
+    }
+
+    public static void resumeVideo(Activity activity) {
+        if (isImageActive) return;
+        if (lastVideoView == null) return;
+        removeVideoPauseOption(activity);
+
+        lastVideoView.start();
+    }
+
     public static void hideVideo(Activity activity) {
         if (isImageActive) return;
+
+        removeVideoPauseOption(activity);
+        lastVideoView = null;
         _hide(activity, Arguments.createMap());
     }
 

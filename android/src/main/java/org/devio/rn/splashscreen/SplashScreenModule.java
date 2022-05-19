@@ -57,8 +57,13 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
     }
 
     @ReactMethod
+    public void showVideo(ReadableMap options) {
+        SplashScreen.showVideo(getCurrentActivity(), options);
+    }
+
+    @ReactMethod
     public void showVideo() {
-        SplashScreen.showVideo(getCurrentActivity());
+        showVideo(Arguments.createMap());
     }
 
     @ReactMethod
@@ -69,5 +74,15 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
     @ReactMethod
     public void setBackgroundColor(String color) {
         SplashScreen.setBackgroundColor(getCurrentActivity(), color);
+    }
+
+    @ReactMethod
+    public void removeVideoPauseOption() {
+        SplashScreen.removeVideoPauseOption(getCurrentActivity());
+    }
+
+    @ReactMethod
+    public void resumeVideo() {
+        SplashScreen.resumeVideo(getCurrentActivity());
     }
 }
