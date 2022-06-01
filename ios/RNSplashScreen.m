@@ -44,6 +44,14 @@ NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
   lastPlayer = player;
   __weak AVPlayer *_player = player;
 
+  NSNumber *allowAudio = config[@"allowAudio"];
+  if (allowAudio != nil && [allowAudio boolValue]) {
+    player.muted = false;
+  }
+  else {
+    player.muted = true;
+  }
+
   NSNumber *pauseAfterMs = config[@"pauseAfterMs"];
   if (pauseAfterMs != nil) {
       videoPauseObserver = [player addBoundaryTimeObserverForTimes: @[[NSValue valueWithCMTime:CMTimeMake([pauseAfterMs intValue], 1000)]]

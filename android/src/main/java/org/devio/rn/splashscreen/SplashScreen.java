@@ -10,6 +10,7 @@ import android.view.View;
 import android.graphics.Color;
 import android.util.Log;
 import android.media.MediaPlayer;
+import android.media.AudioManager;
 import android.view.ViewGroup;
 import android.widget.VideoView;
 
@@ -85,6 +86,25 @@ public class SplashScreen {
                     videoView.getLayoutParams().height = fullHeight;
 
                     videoView.setVideoPath(videoPath);
+
+                    boolean allowAudio = options.hasKey("allowAudio") ? options.getBoolean("allowAudio") : false;
+                    if (!allowAudio) {
+                        videoView.setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE);
+                    }
+
+                    videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            try {
+                                if (!allowAudio) {
+                                    mp.setVolume(0f, 0f);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
                     videoView.start();
 
                     lastVideoView = videoView;
