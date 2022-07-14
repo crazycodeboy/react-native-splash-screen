@@ -245,7 +245,7 @@ Create a style definition for this in `android/app/src/main/res/values/styles.xm
 
 Change your `show` method to include your custom style:
 ```java
-SplashScreen.show(this, R.style.SplashScreenTheme);
+SplashScreen.show(this, R.style.SplashScreenTheme, true);
 ```
 
 ### iOS    
@@ -281,6 +281,7 @@ export default class WelcomePage extends Component {
 |--------|----------|----------|-------------------------------------|
 | show() | function | false    | Open splash screen (Native Method ) |
 | show(final Activity activity, final boolean fullScreen) | function | false    | Open splash screen (Native Method ) |
+| show(final Activity activity, final int themeResId, final boolean fullScreen) | function | false    | Open splash screen with specified theme (Native Method ) |
 | hide() | function | false    | Close splash screen                 |
 
 ## Testing
