@@ -74,9 +74,14 @@ NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
   [player play];
 
   [[NSNotificationCenter defaultCenter] addObserver: self
-                                           selector: @selector(hideVideo:)
+                                           selector: @selector(restartVideoFromBeginning:)
                                                name: AVPlayerItemDidPlayToEndTimeNotification
                                              object: [player currentItem]];
+}
+
++ (void) restartVideoFromBeginning:(AVPlayerItem*)playerItem {
+	if (lastPlayer == nil) return
+  [lastPlayer seekToTime:kCMTimeZero];
 }
 
 + (void) hideVideo {

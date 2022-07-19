@@ -129,7 +129,7 @@ public class SplashScreen {
                     videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mp) {
-                            hideVideo(activity);
+                            resumeVideo(activity);
                         }
                     });
 
