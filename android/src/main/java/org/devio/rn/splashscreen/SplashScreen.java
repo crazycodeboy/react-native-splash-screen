@@ -31,6 +31,7 @@ import java.lang.ref.WeakReference;
 public class SplashScreen {
     private static Dialog mSplashDialog;
     private static WeakReference<Activity> mActivity;
+    private static boolean loopVideo = false;
     private static boolean isVideoActive = false;
     private static boolean isImageActive = false;
     private static VideoView lastVideoView = null;
@@ -109,6 +110,7 @@ public class SplashScreen {
 
                     lastVideoView = videoView;
 
+                    loopVideo = options.hasKey("loopVideo") ? options.getBoolean("loopVideo") : false;
                     int pauseAfterMs = options.hasKey("pauseAfterMs") ? options.getInt("pauseAfterMs") : 0;
                     if (pauseAfterMs > 0) {
                         videoPauseRunnable = new Runnable() {
@@ -129,7 +131,7 @@ public class SplashScreen {
                     videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mp) {
-                            hideVideo(activity);
+                            manageVideoEnd(activity);
                         }
                     });
 
@@ -152,6 +154,14 @@ public class SplashScreen {
 
         lastVideoView.removeCallbacks(videoPauseRunnable);
         videoPauseRunnable = null;
+    }
+
+    public static void manageVideoEnd(Activity activity) {
+        if (loopVideo) {
+            resumeVideo(activity);
+        } else {
+            hideVideo(activity);
+        }
     }
 
     public static void resumeVideo(Activity activity) {
