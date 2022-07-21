@@ -52,10 +52,17 @@ NSString* RNSplashScreenOverlayName = @"splashscreenVideo";
   else {
     player.muted = true;
   }
+  
+  // Start the video from defined second
+  NSNumber *startSecond = config[@"startSecond"];
+  if (startSecond != nil) {
+    CMTime newTime = CMTimeMakeWithSeconds([startSecond floatValue], 1);
+    [lastPlayer seekToTime:newTime];
+  }
 
-	loop = config[@"loopVideo"];
-
-  NSNumber *pauseAfterMs = config[@"pauseAfterMs"];
+  loop = config[@"loopVideo"];
+	
+	NSNumber *pauseAfterMs = config[@"pauseAfterMs"];
   if (pauseAfterMs != nil) {
       videoPauseObserver = [player addBoundaryTimeObserverForTimes: @[[NSValue valueWithCMTime:CMTimeMake([pauseAfterMs intValue], 1000)]]
                                                     queue:NULL // main queue
