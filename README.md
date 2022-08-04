@@ -43,7 +43,7 @@ Run `npm i react-native-splash-screen --save`
 
 #### Automatic installation
 
-`react-native link react-native-splash-screen` or `rnpm link react-native-splash-screen`
+`react-native link react-native-splash-screen` or `npm link react-native-splash-screen`
 
 #### Manual installation  
 
