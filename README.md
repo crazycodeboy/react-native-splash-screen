@@ -136,6 +136,15 @@ public class MainActivity extends ReactActivity {
     // ...other code
 }
 ```
+>if `MainActivity.java` file have:
+```
+ @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      SplashScreen.show(this);  // here new added by you
+        super.onCreate(null); <--- if have have null value than change it to -->   super.onCreate(savedInstanceState);
+    }
+```
+
 
 **iOS:**
 
