@@ -55,7 +55,7 @@ include ':react-native-splash-screen'
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 ```
 
-2. In your android/app/build.gradle file, add the `:react-native-splash-screen` project as a compile-time dependency:
+2. In your `android/app/build.gradle` file, add the `:react-native-splash-screen` project as a compile-time dependency:
 
 ```java
 ...
