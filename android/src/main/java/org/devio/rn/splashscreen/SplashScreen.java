@@ -94,14 +94,12 @@ public class SplashScreen {
 
     private static void setActivityAndroidP(Dialog dialog) {
         //设置全屏展示
-        if (Build.VERSION.SDK_INT >= 28) {
-            if (dialog != null && dialog.getWindow() != null) {
-                //全屏显示
-                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-                WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-                lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-                dialog.getWindow().setAttributes(lp);
-            }
+        if (Build.VERSION.SDK_INT >= 28 && dialog != null && dialog.getWindow() != null) {
+            //全屏显示
+            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            dialog.getWindow().setAttributes(lp);
         }
     }
 }
