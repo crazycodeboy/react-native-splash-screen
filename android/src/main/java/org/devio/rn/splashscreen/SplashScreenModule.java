@@ -12,7 +12,8 @@ import com.facebook.react.bridge.ReactMethod;
  * GitHub:https://github.com/crazycodeboy
  * Email:crazycodeboy@gmail.com
  */
-public class SplashScreenModule extends ReactContextBaseJavaModule{
+public class SplashScreenModule extends ReactContextBaseJavaModule {
+
     public SplashScreenModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
