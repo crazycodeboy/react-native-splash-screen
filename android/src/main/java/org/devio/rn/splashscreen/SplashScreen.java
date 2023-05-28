@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
 import android.view.WindowManager;
-
 import java.lang.ref.WeakReference;
 
 /**
@@ -16,16 +15,20 @@ import java.lang.ref.WeakReference;
  * Email:crazycodeboy@gmail.com
  */
 public class SplashScreen {
+
     private static Dialog mSplashDialog;
+
     private static WeakReference<Activity> mActivity;
 
     /**
      * 打开启动屏
      */
     public static void show(final Activity activity, final int themeResId, final boolean fullScreen) {
-        if (activity == null) return;
+        if (activity == null)
+            return;
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
+
             @Override
             public void run() {
                 if (!activity.isFinishing()) {
@@ -48,7 +51,6 @@ public class SplashScreen {
      */
     public static void show(final Activity activity, final boolean fullScreen) {
         int resourceId = fullScreen ? R.style.SplashScreen_Fullscreen : R.style.SplashScreen_SplashTheme;
-
         show(activity, resourceId, fullScreen);
     }
 
@@ -69,21 +71,18 @@ public class SplashScreen {
             }
             activity = mActivity.get();
         }
-
-        if (activity == null) return;
-
+        if (activity == null)
+            return;
         final Activity _activity = activity;
-
         _activity.runOnUiThread(new Runnable() {
+
             @Override
             public void run() {
                 if (mSplashDialog != null && mSplashDialog.isShowing()) {
                     boolean isDestroyed = false;
-
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                         isDestroyed = _activity.isDestroyed();
                     }
-
                     if (!_activity.isFinishing() && !isDestroyed) {
                         mSplashDialog.dismiss();
                     }
@@ -95,13 +94,12 @@ public class SplashScreen {
 
     private static void setActivityAndroidP(Dialog dialog) {
         //设置全屏展示
-        if (Build.VERSION.SDK_INT >= 28) {
-            if (dialog != null && dialog.getWindow() != null) {
-                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);//全屏显示
-                WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-                lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-                dialog.getWindow().setAttributes(lp);
-            }
+        if (Build.VERSION.SDK_INT >= 28 && dialog != null && dialog.getWindow() != null) {
+            //全屏显示
+            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            dialog.getWindow().setAttributes(lp);
         }
     }
 }
