@@ -139,7 +139,7 @@ public class MainActivity extends ReactActivity {
 
 **iOS:**
 
-Update `AppDelegate.m` with the following additions:
+Update `AppDelegate.mm` with the following additions:
 
 
 ```obj-c
@@ -147,18 +147,27 @@ Update `AppDelegate.m` with the following additions:
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "RNSplashScreen.h"  // here
+#import "RNSplashScreen.h"  // <--- import added here
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.moduleName = @"ProjectName";
+    // You can add your custom initial props in the dictionary below.
+    // They will be passed down to the ViewController used by React Native.
+    self.initialProps = @{};
+
     // ...other code
 
-    [RNSplashScreen show];  // here
+    // This allows the app to finish launching before attaching the splash screen
+    BOOL didFinish = [super application:application didFinishLaunchingWithOptions:launchOptions];
+
+    [RNSplashScreen show];  // <--- Method called here
     // or
-    //[RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
-    return YES;
+    // [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
+
+    return didFinish;
 }
 
 @end

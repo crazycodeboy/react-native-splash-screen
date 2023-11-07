@@ -130,7 +130,7 @@ public class MainActivity extends ReactActivity {
 
 **iOS:**
 
-更新你的AppDelegate.m 文件如下：
+更新你的AppDelegate.mm 文件如下：
 
 
 ```obj-c
@@ -144,10 +144,21 @@ public class MainActivity extends ReactActivity {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.moduleName = @"ProjectName";
+    // You can add your custom initial props in the dictionary below.
+    // They will be passed down to the ViewController used by React Native.
+    self.initialProps = @{};
+    
     // ...other code
 
+    // 允许应用程序完成启动
+    BOOL didFinish = [super application:application didFinishLaunchingWithOptions:launchOptions];
+
     [RNSplashScreen show];  // 添加这一句，这一句一定要在最后
-    return YES;
+    // or
+    // [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
+
+    return didFinish;
 }
 
 @end
