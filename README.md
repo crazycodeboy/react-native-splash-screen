@@ -97,6 +97,13 @@ public class MainApplication extends Application implements ReactApplication {
 }
 ```
 
+for MainApplication.kt add following code
+
+override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        SplashScreen.show(this) // Assuming SplashScreen is a class/method you want to call
+    }
+
 **iOS:**
 
 1. `cd ios`
