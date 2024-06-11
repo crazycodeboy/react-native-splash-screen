@@ -97,6 +97,24 @@ public class MainApplication extends Application implements ReactApplication {
 }
 ```
 
+```kotlin
+// react-native-splash-screen >= 0.3.1
+import org.devio.rn.splashscreen.SplashScreen
+
+
+class MainActivity : ReactActivity() {
+
+    override fun getMainComponentName(): String = "main"
+    override fun onCreate(savedInstanceState: Bundle?) {
+        SplashScreen.show(this)
+        setTheme(R.style.AppTheme);
+        super.onCreate(null)
+  }
+
+//   override fun getMainComponentName(): String = "main" // commented 
+```
+
+
 **iOS:**
 
 1. `cd ios`
