@@ -136,6 +136,29 @@ public class MainActivity extends ReactActivity {
     // ...other code
 }
 ```
+> OR
+
+Update the `MainActivity.kt` to use `react-native-splash-screen` via the following changes:
+
+```kotlin
+import android.os.Bundle; // here
+import com.facebook.react.ReactActivity;
+// react-native-splash-screen >= 0.3.1
+import org.devio.rn.splashscreen.SplashScreen; // here
+// react-native-splash-screen < 0.3.1
+import com.cboy.rn.splashscreen.SplashScreen; // here
+
+class MainActivity : ReactActivity() {
+     // ...other code
+     
+       override fun createReactActivityDelegate(): ReactActivityDelegate {
+      SplashScreen.show(this) //here
+      return DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+  }
+   
+}
+```
+
 
 **iOS:**
 
