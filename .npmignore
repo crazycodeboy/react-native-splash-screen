@@ -28,6 +28,6 @@ DerivedData
 #
 node_modules/
 npm-debug.log
-examples/
+example/
 screenshot/
 *.md
