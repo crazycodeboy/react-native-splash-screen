@@ -15,12 +15,11 @@ import com.facebook.react.bridge.ReactMethod;
  */
 public class SplashScreenModule extends ReactContextBaseJavaModule {
 
-    // Store the React application context in a member variable.
     private final ReactApplicationContext mContext;
 
     public SplashScreenModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        mContext = reactContext;  // Save the context for later use.
+        mContext = reactContext;
     }
 
     @Override
@@ -28,22 +27,14 @@ public class SplashScreenModule extends ReactContextBaseJavaModule {
         return "SplashScreen";
     }
 
-    /**
-     * 打开启动屏 (Show the splash screen)
-     */
     @ReactMethod
     public void show() {
-        // Retrieve the current activity using the stored context.
         Activity currentActivity = mContext.getCurrentActivity();
         SplashScreen.show(currentActivity);
     }
 
-    /**
-     * 关闭启动屏 (Hide the splash screen)
-     */
     @ReactMethod
     public void hide() {
-        // Retrieve the current activity using the stored context.
         Activity currentActivity = mContext.getCurrentActivity();
         SplashScreen.hide(currentActivity);
     }
