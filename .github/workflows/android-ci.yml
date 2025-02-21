@@ -10,49 +10,49 @@ on:
 
 jobs:
   build-android:
-    name: Build Android Library
+    name: Build Android Library with Gradle 7.6
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Check out the repository code
+      # 1. Check out the repository code.
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # 2. Set up Node.js to install dependencies from package.json
+      # 2. Set up Node.js (to install dependencies).
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # 3. Install npm dependencies
+      # 3. Install npm dependencies.
       - name: Install Dependencies
         run: npm install
 
-      # 4. Set up Java (using JDK 17 to satisfy Android SDK requirements)
+      # 4. Set up Java (JDK 17 required by Android SDK).
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: '17'
 
-      # 5. Set up Android SDK (installs necessary build tools)
+      # 5. Set up Android SDK (installs necessary build tools).
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      # 6. Build the Android library (release build) using gradlew if available; otherwise, fallback to system gradle
-      - name: Build Android Library
+      # 6. Download Gradle 7.6 and build the Android library.
+      - name: Install Gradle 7.6 and Build Android Library
         run: |
+          echo "Downloading Gradle 7.6..."
+          wget https://services.gradle.org/distributions/gradle-7.6-bin.zip
+          unzip gradle-7.6-bin.zip -d gradle
+          export PATH=$(pwd)/gradle/gradle-7.6/bin:$PATH
+          echo "Using Gradle version:"
+          gradle -v
+          echo "Building Android library..."
           cd android
-          if [ -f gradlew ]; then
-            echo "Using gradlew wrapper"
-            chmod +x gradlew
-            ./gradlew assembleRelease
-          else
-            echo "gradlew not found, using system gradle"
-            gradle assembleRelease
-          fi
+          gradle assembleRelease
 
-      # 7. Upload the generated AAR artifact (for library projects)
+      # 7. Upload the generated AAR artifact.
       - name: Upload AAR Artifact
         uses: actions/upload-artifact@v4
         with:
