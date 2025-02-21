@@ -1,0 +1,57 @@
+name: React Native Splash Screen Android CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-android:
+    name: Build Android Library
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 2. Set up Node.js to install dependencies from package.json
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3. Install npm dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # 4. Set up Java (required for Android builds)
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '11'
+
+      # 5. Set up Android SDK (installs necessary Android build tools)
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      # 6. Grant execute permission to the Gradle wrapper
+      - name: Grant Execute Permission
+        run: chmod +x android/gradlew
+
+      # 7. Build the Android library (release build)
+      - name: Build Android Library
+        run: |
+          cd android
+          ./gradlew assembleRelease
+
+      # 8. Upload the generated AAR artifact (for library projects)
+      - name: Upload AAR Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: react-native-splash-screen-release
+          path: android/build/outputs/aar/*.aar
