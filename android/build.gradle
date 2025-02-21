@@ -1,20 +1,26 @@
-// BEGIN: Add the buildscript block to download the Android Gradle Plugin.
+// --- Top-level buildscript block: Downloads Android Gradle plugin ---
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        // Adjust the version as needed. Version 7.0.4 is used as an example.
+        // Adjust this version if needed.
         classpath 'com.android.tools.build:gradle:7.0.4'
     }
 }
-// END: buildscript block
 
-// Apply the Android Library plugin.
+// --- Define repositories for all projects ---
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 apply plugin: 'com.android.library'
 
-// Utility function for safe retrieval of properties.
+// Utility function for safely retrieving properties.
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
