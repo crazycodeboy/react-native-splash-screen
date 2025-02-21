@@ -1,13 +1,29 @@
+// BEGIN: Add the buildscript block to download the Android Gradle Plugin.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Adjust the version as needed. Version 7.0.4 is used as an example.
+        classpath 'com.android.tools.build:gradle:7.0.4'
+    }
+}
+// END: buildscript block
+
+// Apply the Android Library plugin.
+apply plugin: 'com.android.library'
+
+// Utility function for safe retrieval of properties.
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
-apply plugin: 'com.android.library'
-
-def DEFAULT_COMPILE_SDK_VERSION             = 26
-def DEFAULT_BUILD_TOOLS_VERSION             = "26.0.2"
-def DEFAULT_TARGET_SDK_VERSION              = 26
-def DEFAULT_SUPPORT_LIB_VERSION             = "26.1.0"
+// Default configuration values.
+def DEFAULT_COMPILE_SDK_VERSION = 26
+def DEFAULT_BUILD_TOOLS_VERSION = "26.0.2"
+def DEFAULT_TARGET_SDK_VERSION = 26
+def DEFAULT_SUPPORT_LIB_VERSION = "26.1.0"
 
 android {
     compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
