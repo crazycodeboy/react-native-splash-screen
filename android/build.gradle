@@ -1,11 +1,10 @@
-// --- Top-level buildscript block: Downloads Android Gradle plugin ---
+// --- Top-level buildscript block: Download Android Gradle Plugin ---
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        // Adjust this version if needed.
         classpath 'com.android.tools.build:gradle:7.0.4'
     }
 }
@@ -15,6 +14,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        // Uncomment the next line if your project includes node_modules for react-native
+        // maven { url "$rootDir/../node_modules/react-native/android" }
     }
 }
 
@@ -55,5 +56,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.facebook.react:react-native:+" // From node_modules
+    // Change from implementation to compileOnly so Gradle doesn't try to download React Native from external repositories.
+    compileOnly "com.facebook.react:react-native:+"
 }
