@@ -28,7 +28,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # 4. Set up Java (now using JDK 17 to meet SDK requirements)
+      # 4. Set up Java (using JDK 17 to satisfy Android SDK requirements)
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -39,17 +39,20 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      # 6. Grant execute permission to the Gradle wrapper
-      - name: Grant Execute Permission
-        run: chmod +x android/gradlew
-
-      # 7. Build the Android library (release build)
+      # 6. Build the Android library (release build) using gradlew if available; otherwise, fallback to system gradle
       - name: Build Android Library
         run: |
           cd android
-          ./gradlew assembleRelease
+          if [ -f gradlew ]; then
+            echo "Using gradlew wrapper"
+            chmod +x gradlew
+            ./gradlew assembleRelease
+          else
+            echo "gradlew not found, using system gradle"
+            gradle assembleRelease
+          fi
 
-      # 8. Upload the generated AAR artifact using upload-artifact@v4
+      # 7. Upload the generated AAR artifact (for library projects)
       - name: Upload AAR Artifact
         uses: actions/upload-artifact@v4
         with:
