@@ -1,4 +1,4 @@
-// Top-level buildscript block: downloads the Android Gradle plugin.
+// Top-level buildscript block: Download Android Gradle Plugin.
 buildscript {
     repositories {
         google()
@@ -9,19 +9,18 @@ buildscript {
     }
 }
 
-// All projects (modules) should search these repositories for dependencies.
+// Define repositories for all projects.
 allprojects {
     repositories {
         google()
         mavenCentral()
-        // Add JitPack to help resolve React Native artifact.
         maven { url "https://www.jitpack.io" }
     }
 }
 
 apply plugin: 'com.android.library'
 
-// Utility function to safely retrieve properties.
+// Utility function for safe property retrieval.
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
@@ -56,7 +55,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    // Instead of using a dynamic version, specify a fixed version.
-    // React Native isn’t published on Maven Central, but JitPack may host a version.
-    compileOnly "com.facebook.react:react-native:0.71.0"
+    // Removed the React Native dependency.
+    // React Native is declared as a peer dependency in package.json and should be provided by the consuming app.
 }
