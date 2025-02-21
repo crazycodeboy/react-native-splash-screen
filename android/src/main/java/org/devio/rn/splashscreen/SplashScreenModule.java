@@ -1,5 +1,6 @@
 package org.devio.rn.splashscreen;
 
+import android.app.Activity;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -12,7 +13,7 @@ import com.facebook.react.bridge.ReactMethod;
  * GitHub:https://github.com/crazycodeboy
  * Email:crazycodeboy@gmail.com
  */
-public class SplashScreenModule extends ReactContextBaseJavaModule{
+public class SplashScreenModule extends ReactContextBaseJavaModule {
     public SplashScreenModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
@@ -27,7 +28,8 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
      */
     @ReactMethod
     public void show() {
-        SplashScreen.show(getCurrentActivity());
+        Activity currentActivity = getReactApplicationContext().getCurrentActivity();
+        SplashScreen.show(currentActivity);
     }
 
     /**
@@ -35,6 +37,7 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
      */
     @ReactMethod
     public void hide() {
-        SplashScreen.hide(getCurrentActivity());
+        Activity currentActivity = getReactApplicationContext().getCurrentActivity();
+        SplashScreen.hide(currentActivity);
     }
 }
