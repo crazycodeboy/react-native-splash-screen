@@ -51,7 +51,7 @@ jobs:
 
       # 8. Upload the generated AAR artifact (for library projects)
       - name: Upload AAR Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: react-native-splash-screen-release
           path: android/build/outputs/aar/*.aar
