@@ -1,13 +1,39 @@
-def safeExtGet(prop, fallback) {
-    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+// Top-level buildscript block: Download the Android Gradle Plugin.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Adjust the plugin version if necessary.
+        classpath 'com.android.tools.build:gradle:7.0.4'
+    }
+}
+
+// All projects (modules) will use these repositories.
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        // Add React Native’s Android repository from your local node_modules.
+        maven { url "$rootDir/../node_modules/react-native/android" }
+        // Fallback repository.
+        maven { url "https://www.jitpack.io" }
+    }
 }
 
 apply plugin: 'com.android.library'
 
-def DEFAULT_COMPILE_SDK_VERSION             = 26
-def DEFAULT_BUILD_TOOLS_VERSION             = "26.0.2"
-def DEFAULT_TARGET_SDK_VERSION              = 26
-def DEFAULT_SUPPORT_LIB_VERSION             = "26.1.0"
+// Utility function to safely retrieve properties.
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+// Default configuration values.
+def DEFAULT_COMPILE_SDK_VERSION = 26
+def DEFAULT_BUILD_TOOLS_VERSION = "26.0.2"
+def DEFAULT_TARGET_SDK_VERSION = 26
+def DEFAULT_SUPPORT_LIB_VERSION = "26.1.0"
 
 android {
     compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
@@ -33,5 +59,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.facebook.react:react-native:+" // From node_modules
+    // Mark React Native as a compileOnly dependency since it's provided by the host app.
+    compileOnly "com.facebook.react:react-native:0.70.6"
 }
