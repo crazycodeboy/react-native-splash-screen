@@ -5,17 +5,17 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // Adjust the plugin version if necessary.
+        // Adjust the plugin version as needed.
         classpath 'com.android.tools.build:gradle:7.0.4'
     }
 }
 
-// All projects (modules) will use these repositories.
+// Define repositories for all projects.
 allprojects {
     repositories {
         google()
         mavenCentral()
-        // Add React Native’s Android repository from your local node_modules.
+        // Look in local node_modules for React Native artifacts.
         maven { url "$rootDir/../node_modules/react-native/android" }
         // Fallback repository.
         maven { url "https://www.jitpack.io" }
@@ -24,7 +24,7 @@ allprojects {
 
 apply plugin: 'com.android.library'
 
-// Utility function to safely retrieve properties.
+// Utility function for safely retrieving properties.
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
@@ -59,6 +59,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    // Mark React Native as a compileOnly dependency since it's provided by the host app.
+    // Use compileOnly with a fixed version of React Native.
     compileOnly "com.facebook.react:react-native:0.70.6"
 }
