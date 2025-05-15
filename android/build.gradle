@@ -7,7 +7,7 @@ apply plugin: 'com.android.library'
 def DEFAULT_COMPILE_SDK_VERSION             = 26
 def DEFAULT_BUILD_TOOLS_VERSION             = "26.0.2"
 def DEFAULT_TARGET_SDK_VERSION              = 26
-def DEFAULT_SUPPORT_LIB_VERSION             = "26.1.0"
+def DEFAULT_ANDROIDX_APPCOMPAT_VERSION      = "1.6.1"
 
 android {
     compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
@@ -28,10 +28,10 @@ android {
 }
 
 dependencies {
-    def supportLibVersion = rootProject.hasProperty('supportLibVersion') ? rootProject.supportLibVersion : DEFAULT_SUPPORT_LIB_VERSION
+    def androidXAppCompatVersion = rootProject.hasProperty('androidXAppCompatVersion') ? rootProject.androidXAppCompatVersion : DEFAULT_ANDROIDX_APPCOMPAT_VERSION
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
     implementation "com.facebook.react:react-native:+" // From node_modules
 }
