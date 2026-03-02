@@ -1,8 +1,15 @@
 <resources>
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <!--设置透明背景-->
+        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <!-- Theme used before React content is ready (Android 11 and below). -->
+<!--    <style name="LaunchTheme" parent="AppTheme">-->
+<!--        <item name="android:windowBackground">@drawable/launch_screen</item>-->
+<!--    </style>-->
+
 </resources>

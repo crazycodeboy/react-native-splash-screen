@@ -1,232 +1,177 @@
 # react-native-splash-screen
 
-[![Download](https://img.shields.io/badge/Download-v3.1.1-ff69b4.svg) ](https://www.npmjs.com/package/react-native-splash-screen)
-[ ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/crazycodeboy/react-native-splash-screen/pulls)
-[ ![react-native-splash-screen release](https://img.shields.io/github/release/crazycodeboy/react-native-splash-screen.svg?maxAge=2592000?style=flat-square)](https://github.com/crazycodeboy/GitHubPopular/releases)
-[ ![language English](https://img.shields.io/badge/language-English-feb252.svg)](https://github.com/crazycodeboy/GitHubPopular/)
+[![Download](https://img.shields.io/badge/Download-v4.0.0-ff69b4.svg)](https://www.npmjs.com/package/react-native-splash-screen)
 [![License MIT](http://img.shields.io/badge/license-MIT-orange.svg?style=flat)](https://raw.githubusercontent.com/crazycodeboy/react-native-check-box/master/LICENSE)
-[ ![原理 解析](https://img.shields.io/badge/原理-解析-brightgreen.svg)](https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%90%88%E9%9B%86/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B/React%20Native%20%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%95%99%E7%A8%8B.md)
 
+React Native 启动屏库，用于在应用初始化期间显示/隐藏自定义启动页，支持 Android 与 iOS。
 
+> 这是 `react-native-splash-screen` 的 `v4` 升级版本，仅支持 React Native 新架构。
 
-React Native启动屏，解决iOS，Android启动白屏问题，支持Android和iOS。
+## 兼容性
 
-## 目录
+- `react-native-splash-screen@4.x`
+  - React Native `>= 0.84.0`
+  - New Architecture（TurboModule / Codegen）
+- 老项目请使用 `v3.x`（旧架构）：[README.zh-v3.md](./README.zh-v3.md)
 
-- [安装说明](#安装说明)
-- [演示](#演示)
-- [使用说明](#使用说明)
-- [API](#api)
-- [贡献](#贡献)
-- [改变](#改变)
+`v4.x` 不支持旧架构（Legacy Architecture）。
 
-## 演示
-* [Examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)
+## 安装
 
-![react-native-splash-screen-Android](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/v3.0.0/examples/Screenshots/react-native-splash-screen-Android.gif)
-![react-native-splash-screen-iOS](https://raw.githubusercontent.com/crazycodeboy/react-native-splash-screen/v3.0.0/examples/Screenshots/react-native-splash-screen-iOS.gif)
-
-
-## 改变
-
-如果你项目的React Native>=0.47.请使用[v3.+](https://github.com/crazycodeboy/react-native-splash-screen/releases),
-如果<0.47.0请使用[v2.1.0](https://github.com/crazycodeboy/react-native-splash-screen/releases/tag/v1.0.9)。
-
-## 安装说明
-
-### 第一步(下载):
-在项目根目录打开终端运行 `npm i react-native-splash-screen --save`
-
-### 第二步 (安装):
-
-大家可以通过自动或手动两种方式来安装`react-native-splash-screen`。
-
-
-#### 自动安装
-
-终端运行：
-
-
-`react-native link react-native-splash-screen` 或 `rnpm link react-native-splash-screen`
-
-####  手动安装
-
-**Android:**
-
-1.在你的 android/settings.gradle 文件中添加下列代码:
-```
-include ':react-native-splash-screen'
-project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
+```bash
+npm i react-native-splash-screen
 ```
 
-2.在你的 android/app/build.gradle 文件中添加 `:react-native-splash-screen`：
+> `4.x` 不再需要 `react-native link`，也不需要手动修改 `settings.gradle`、`MainApplication`。
 
-代码如下：
+## 使用
 
+```ts
+import SplashScreen from 'react-native-splash-screen';
+
+// 在初始化完成后调用
+SplashScreen.hide();
 ```
-...
-dependencies {
-    ...
-    implementation project(':react-native-splash-screen')
+
+## Android 配置
+
+### 1. 在 `MainActivity.kt` 显示启动页
+
+在 `super.onCreate` 前调用：
+
+```kotlin
+import android.os.Bundle
+import com.facebook.react.ReactActivity
+import org.devio.rn.splashscreen.SplashScreen
+
+class MainActivity : ReactActivity() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    SplashScreen.show(this, true)
+    super.onCreate(savedInstanceState)
+  }
 }
 ```
 
-3.更新你的MainApplication.java 文件，如下:
+### 2. 配置 `launch_screen.xml`
 
-```java
-public class MainApplication extends Application implements ReactApplication {
-
-    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-        @Override
-        protected boolean getUseDeveloperSupport() {
-            return BuildConfig.DEBUG;
-        }
-
-        @Override
-        protected List<ReactPackage> getPackages() {
-            return Arrays.<ReactPackage>asList(
-                    new MainReactPackage(),
-            new SplashScreenReactPackage()  //添加这一句
-            );
-        }
-    };
-
-    @Override
-    public ReactNativeHost getReactNativeHost() {
-        return mReactNativeHost;
-    }
-}
-```
-
-**iOS:**
-
-1. 在 XCode的项目导航视图中单击 `Libraries` ➜ `Add Files to [your project's name]`
-2. 将 `SplashScreen.xcodeproj`添加到你的项目中,`node_modules` ➜ `react-native-splash-screen`  ➜ `SplashScreen.xcodeproj`
-
-3.  在XCode中打开`Build Phases` ➜ `Link Binary With Libraries`将`libSplashScreen.a` 添加到你的项目中。
-4.  如果在使用过过程中出现 `'SplashScreen.h' file not found`问题,你可以下面的代码添加到Header Search Paths中,步骤如下:
-
-
-选择你的项目,TARGET  → Build Settings → Search Paths → Header Search Paths 添加:
-
-      `$(SRCROOT)/../node_modules/react-native-splash-screen/ios`
-
-
-### 第三步(配置):
-
-**Android:**
-
-更新你的 MainActivity.java 文件如下：
-```java
-public class MainActivity extends ReactActivity {
-   @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.show(this);  // 添加这一句
-        super.onCreate(savedInstanceState);
-    }
-    // ...other code
-}
-```
-
-**iOS:**
-
-更新你的AppDelegate.m 文件如下：
-
-
-```obj-c
-#import "AppDelegate.h"
-
-#import <React/RCTBundleURLProvider.h>
-#import <React/RCTRootView.h>
-#import "RNSplashScreen.h"  // 添加这一句
-
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // ...other code
-
-    [RNSplashScreen show];  // 添加这一句，这一句一定要在最后
-    return YES;
-}
-
-@end
-
-```
-
-
-## 使用说明
-
-将 `react-native-splash-screen` 导入你的JS 文件。
-
-
-`import SplashScreen from 'react-native-splash-screen'`
-
-**Android:**
-
-创建一个名为 launch_screen.xml 的布局文件来自定义你的启动屏幕。
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/launch_screen">
-</LinearLayout>
-```
-
-**另外:**
-
-你也可以启用app主题透明选项来解决在APP启动时因主题原因导致的短暂白屏的问题,具体步骤如下:
-
-打开 `android/app/src/main/res/values/styles.xml`文件,添加 `<item name="android:windowIsTranslucent">true</item>`,如下 :
+文件路径：`android/app/src/main/res/layout/launch_screen.xml`
 
 ```xml
-<resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <!--设置透明背景-->
-        + <item name="android:windowIsTranslucent">true</item>
-    </style>
-</resources>
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/launch_screen" />
+</RelativeLayout>
 ```
 
+将你的启动图放到对应密度目录（如 `mipmap-xhdpi` / `mipmap-xxhdpi` 等）。
 
-**更详细的介绍，可以查看 [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
+### 3. 可选：透明窗口方案（你当前使用的方式）
 
-**iOS**
+如果你希望尽量弱化 Android 12+ 的系统图标阶段，可在 **启动主题**（如 `LaunchTheme`）中加：
 
-iOS可以通过LaunchScreen.storyboard或LaunchScreen.xib来自定义你的启动屏幕。
+```xml
+<item name="android:windowIsTranslucent">true</item>
+```
 
-**更详细的介绍，可以查看 [examples](https://github.com/crazycodeboy/react-native-splash-screen/tree/master/examples)**
+建议：
 
-最后，你可以在适当的时候关闭启动屏幕（如：启动初始化完成后）:
+- 只加在启动主题，不要加在全局 `AppTheme`
+- 不同 ROM 可能有轻微过渡差异（这是系统层行为）
 
-```JavaScript
-import SplashScreen from 'react-native-splash-screen'
+## iOS 配置
 
-export default class WelcomePage extends Component {
+### 1. 配置 `LaunchScreen.storyboard`
 
-    componentDidMount() {
-    	 // do anything while splash screen keeps, use await to wait for an async task.
-        SplashScreen.hide();//关闭启动屏幕
-    }
+使用静态布局，图片放在 `Assets.xcassets`。
+
+### 2. 在 `AppDelegate.swift` 调用
+
+```swift
+import react_native_splash_screen
+```
+
+在 React Native 启动后调用：
+
+```swift
+RNSplashScreen.show()
+```
+
+完整示例（`AppDelegate.swift`，RN 0.84 模板）：
+
+```swift
+import UIKit
+import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
+import react_native_splash_screen // <--- 添加react_native_splash_screen
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "你的应用名",
+      in: window,
+      launchOptions: launchOptions
+    )
+    RNSplashScreen.show() // <--- 确保在 React Native 启动后调用
+    return true
+  }
+}
+
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+  override func sourceURL(for bridge: RCTBridge) -> URL? {
+    self.bundleURL()
+  }
+
+  override func bundleURL() -> URL? {
+#if DEBUG
+    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+#else
+    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+#endif
+  }
 }
 ```
 
 ## API
 
+- `show()`：显示启动页（原生调用）
+- `hide()`：隐藏启动页（JS 调用）
 
-方法            | 类型     | 可选 | 描述
------------------ | -------- | -------- | -----------
-show()   | function | false | 打开启动屏幕(原生方法)
-hide() |  function  | false  |  关闭启动屏幕
+## 常见问题
 
-## 贡献
+### Android 12+ 为什么会先看到系统启动阶段？
 
-欢迎大家提问题，如果能给问题加上一个截图，则是极好的。另外欢迎`Pull requests`贡献你的代码。
+Android 12+ 存在系统级启动阶段，这是平台行为。本库控制的是应用内可控的启动页显示/隐藏。
+
+
+## Legacy 说明
+
+`v3.x` 文档和历史接入方式请参考 [README.zh-v3.md](./README.zh-v3.md)。
 
 ---
 
-**MIT Licensed**
+MIT License
